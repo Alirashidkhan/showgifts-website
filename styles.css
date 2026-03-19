@@ -662,8 +662,8 @@ select       { -webkit-appearance: none; appearance: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 16px;
-  min-height: 110px;
+  padding: 28px 20px;
+  min-height: 120px;
   border: 1px solid var(--gray-100);
   transition: background var(--t), border-color var(--t);
   position: relative;
@@ -672,18 +672,18 @@ select       { -webkit-appearance: none; appearance: none; }
 
 /* Brand Logo images */
 .brand-logo {
-  max-width: 120px;
-  max-height: 45px;
+  max-width: 160px;
+  max-height: 55px;
   width: auto;
   height: auto;
   object-fit: contain;
-  opacity: 0.82;
+  opacity: 0.85;
   transition: opacity var(--t), transform var(--t);
 }
 .brand-tile:hover .brand-logo,
 .client-tile:hover .brand-logo {
   opacity: 1;
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 /* Brand Wordmark text tiles */
@@ -1042,7 +1042,7 @@ select       { -webkit-appearance: none; appearance: none; }
 .client-tile:hover { background: var(--gold-50); border-color: var(--gold-300); }
 /* Client tile text is slightly larger than brand grid */
 .client-tile .bwm { font-size: 1.15rem; }
-.client-tile .brand-logo { max-width: 100px; max-height: 36px; }
+.client-tile .brand-logo { max-width: 140px; max-height: 50px; }
 
 /* Quote */
 .bq {
@@ -1450,9 +1450,9 @@ select       { -webkit-appearance: none; appearance: none; }
   .wa-fab i     { font-size: 1.5rem; }
   .stt          { width: 44px; height: 44px; right: 18px; bottom: 18px; }
 
-  /* Brand/client logos on mobile — ensure they scale down */
-  .brand-logo  { max-width: 90px; max-height: 32px; }
-  .brand-tile .brand-logo { max-width: 80px; max-height: 28px; }
+  /* Brand/client logos on mobile — scale to fit tiles */
+  .brand-logo  { max-width: 100px; max-height: 38px; }
+  .brand-tile .brand-logo { max-width: 95px; max-height: 35px; }
 }
 
 /* 420px — Small phones */
@@ -1480,8 +1480,8 @@ select       { -webkit-appearance: none; appearance: none; }
   .coll-img    { height: 190px; }
   .client-grid { grid-template-columns: 1fr 1fr; }
   .client-tile { padding: 18px 10px; min-height: 72px; }
-  .brand-tile .brand-logo { max-width: 70px; max-height: 24px; }
-  .client-tile .brand-logo { max-width: 70px; max-height: 26px; }
+  .brand-tile .brand-logo { max-width: 80px; max-height: 30px; }
+  .client-tile .brand-logo { max-width: 80px; max-height: 32px; }
 
   .sec-h2      { font-size: 1.7rem; }
 
