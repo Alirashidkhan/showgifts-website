@@ -71,7 +71,7 @@
 
 /* ── Reset ─────────────────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 body {
   font-family: var(--sans);
   background: var(--white);
@@ -219,17 +219,44 @@ select       { -webkit-appearance: none; appearance: none; }
 }
 
 @media (max-width: 480px) {
+  .popup-overlay {
+    align-items: flex-start;
+    padding: 12px;
+    overflow-y: auto;
+  }
   .popup-modal {
-    padding: 36px 24px;
+    padding: 28px 20px;
+    margin: 30px auto;
+    max-width: calc(100vw - 24px);
+    max-height: none;
   }
   .popup-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
-
-  .ann-close {
-    position: absolute;
+  .popup-desc {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+  .popup-icon {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+  }
+  .popup-hl {
+    font-size: 0.8rem;
+  }
+  .popup-highlights {
+    margin-bottom: 18px;
+    padding: 0;
+  }
+  .popup-badge {
+    font-size: 0.6rem;
+    margin-bottom: 10px;
+  }
+  .popup-close {
+    width: 32px;
+    height: 32px;
     top: 10px;
-    right: 16px;
+    right: 10px;
   }
 }
 
@@ -1009,6 +1036,7 @@ select       { -webkit-appearance: none; appearance: none; }
   color: var(--gold-600);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  word-break: break-word;
 }
 
 /* CTA Card */
@@ -1084,18 +1112,18 @@ select       { -webkit-appearance: none; appearance: none; }
 }
 
 .dprev-upload {
-  border: 2px dashed rgba(201, 168, 76, 0.3);
+  border: 2px dashed var(--gold);
   border-radius: var(--r-lg);
   padding: 50px 40px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: rgba(201, 168, 76, 0.02);
+  background: var(--white);
 }
 
 .dprev-upload:hover {
-  border-color: var(--gold);
-  background: rgba(201, 168, 76, 0.08);
+  border-color: var(--gold-600);
+  background: rgba(201, 168, 76, 0.04);
 }
 
 .dprev-upload-content {
@@ -1198,8 +1226,8 @@ select       { -webkit-appearance: none; appearance: none; }
 .dprev-placeholder {
   position: absolute;
   font-size: 0.75rem;
-  color: var(--text-m);
-  opacity: 0.6;
+  color: var(--gray-500);
+  opacity: 0.9;
   text-align: center;
 }
 
@@ -1256,13 +1284,63 @@ select       { -webkit-appearance: none; appearance: none; }
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .dprev-upload {
+    padding: 35px 20px;
+  }
+
+  .dprev-upload h3 {
+    font-size: 1rem;
+  }
+
+  .dprev-upload p {
+    font-size: 0.9rem;
+  }
+
+  .dprev-products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .dprev-card h4 {
+    font-size: 0.95rem;
+    margin-top: 14px;
+  }
+
+  .dprev-card > p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
   .dprev-upload {
     padding: 30px 16px;
   }
 
+  .dprev-upload h3 {
+    font-size: 0.95rem;
+  }
+
+  .dprev-upload p {
+    font-size: 0.85rem;
+  }
+
+  .dprev-upload small {
+    font-size: 0.75rem;
+  }
+
   .dprev-products {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dprev-card h4 {
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+
+  .dprev-card > p {
+    font-size: 0.78rem;
   }
 }
 
@@ -1738,6 +1816,8 @@ select       { -webkit-appearance: none; appearance: none; }
   .hero-h1     { font-size: 3.8rem; }
   .hero-img    { height: 440px; }
   .hd-phone    { display: none; }
+  .nav         { gap: 18px; }
+  .na          { font-size: 0.78rem; }
 }
 
 /* 900px — Tablet Portrait */
@@ -1868,8 +1948,13 @@ select       { -webkit-appearance: none; appearance: none; }
   .fg-row      { grid-template-columns: 1fr; gap: 0; }
 
   /* Footer */
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 44px; padding-bottom: 32px; }
+  .ft-brand > p { max-width: 100%; }
   .ft-links    { grid-template-columns: 1fr 1fr; gap: 20px; }
-  .footer-inner { padding-top: 44px; padding-bottom: 32px; }
+  .ft-col h5   { font-size: 0.62rem; letter-spacing: 2px; margin-bottom: 12px; }
+  .ft-col li, .ft-col li a { font-size: 0.82rem; }
+  .fb-row      { flex-direction: column; text-align: center; gap: 4px; }
+  .fb-row p    { font-size: 0.72rem; }
 
   /* Floating buttons — WhatsApp becomes clean circle */
   .wa-fab-label { display: none; }
@@ -1903,7 +1988,12 @@ select       { -webkit-appearance: none; appearance: none; }
 
   .why-grid    { grid-template-columns: 1fr; gap: 10px; }
 
-  .ft-links    { grid-template-columns: 1fr; }
+  .ft-links    { grid-template-columns: 1fr; gap: 24px; }
+  .ft-col      { text-align: center; }
+  .ft-col ul   { align-items: center; }
+  .ft-brand    { text-align: center; }
+  .ft-brand > p { text-align: center; margin: 16px auto 0; }
+  .ft-socials  { justify-content: center; }
   .coll-img    { height: 190px; }
   .client-grid { grid-template-columns: 1fr 1fr; }
   .client-tile { padding: 20px 12px; min-height: 80px; }
