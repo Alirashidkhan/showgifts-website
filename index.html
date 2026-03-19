@@ -521,14 +521,23 @@
 
       <div class="dprev-card">
         <div class="dprev-mockup-box">
-          <div class="dprev-product-bg dprev-bg-navy">
-            <svg viewBox="0 0 200 200" class="dprev-svg">
-              <path d="M55 25 L35 25 L8 52 L30 72 L46 56 L46 180 L154 180 L154 56 L170 72 L192 52 L165 25 L145 25 L133 40 Q100 56 67 40 Z" fill="#ffffff" opacity="0.95"/>
-            </svg>
-          </div>
-          <div class="dprev-logo-zone" id="logoArea1">
-            <img class="dprev-logo-preview" id="logoPrev1" alt="Logo" style="display:none">
-            <span class="dprev-placeholder-text">YOUR LOGO</span>
+          <!-- Navy T-shirt with logo centered on chest -->
+          <svg viewBox="0 0 300 320" class="dprev-full-svg">
+            <defs>
+              <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e3d75"/><stop offset="100%" stop-color="#0f2040"/>
+              </linearGradient>
+              <clipPath id="tClip"><path d="M85 40 L65 40 L20 72 L48 100 L72 78 L72 280 L228 280 L228 78 L252 100 L280 72 L235 40 L215 40 L200 58 Q150 78 100 58 Z"/></clipPath>
+              <filter id="tShadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.25"/></filter>
+            </defs>
+            <g filter="url(#tShadow)">
+              <path d="M85 40 L65 40 L20 72 L48 100 L72 78 L72 280 L228 280 L228 78 L252 100 L280 72 L235 40 L215 40 L200 58 Q150 78 100 58 Z" fill="url(#tGrad)"/>
+              <path d="M100 58 Q150 78 200 58" fill="none" stroke="#0a1628" stroke-width="1.5" opacity="0.3"/>
+            </g>
+          </svg>
+          <div class="dprev-logo-on-product" id="logoArea1" style="top:42%;left:50%;width:40%;height:28%;">
+            <img class="dprev-logo-img" id="logoPrev1" alt="" style="display:none">
+            <span class="dprev-ph">YOUR LOGO</span>
           </div>
         </div>
         <h4>T-Shirt</h4>
@@ -537,16 +546,24 @@
 
       <div class="dprev-card">
         <div class="dprev-mockup-box">
-          <div class="dprev-product-bg dprev-bg-white">
-            <svg viewBox="0 0 200 200" class="dprev-svg">
-              <rect x="32" y="40" width="105" height="125" rx="10" fill="#ffffff" stroke="#e2e6f0" stroke-width="2"/>
-              <path d="M137 62 Q170 62 170 102 Q170 142 137 142" fill="none" stroke="#c8cfe3" stroke-width="7" stroke-linecap="round"/>
-              <ellipse cx="84" cy="40" rx="55" ry="12" fill="#f8f9fc" stroke="#e2e6f0" stroke-width="2"/>
-            </svg>
-          </div>
-          <div class="dprev-logo-zone" id="logoArea2">
-            <img class="dprev-logo-preview" id="logoPrev2" alt="Logo" style="display:none">
-            <span class="dprev-placeholder-text">YOUR LOGO</span>
+          <!-- White ceramic mug with logo on body -->
+          <svg viewBox="0 0 300 300" class="dprev-full-svg">
+            <defs>
+              <linearGradient id="mGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f0f2f8"/>
+              </linearGradient>
+              <filter id="mShadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.2"/></filter>
+            </defs>
+            <g filter="url(#mShadow)">
+              <rect x="50" y="55" width="155" height="190" rx="14" fill="url(#mGrad)" stroke="#dce1ec" stroke-width="2"/>
+              <path d="M205 85 Q255 85 255 150 Q255 215 205 215" fill="none" stroke="#c8cfe3" stroke-width="10" stroke-linecap="round"/>
+              <ellipse cx="127" cy="55" rx="80" ry="18" fill="#f8f9fc" stroke="#dce1ec" stroke-width="2"/>
+              <ellipse cx="127" cy="55" rx="65" ry="12" fill="#eef1f8"/>
+            </g>
+          </svg>
+          <div class="dprev-logo-on-product" id="logoArea2" style="top:45%;left:38%;width:35%;height:30%;">
+            <img class="dprev-logo-img" id="logoPrev2" alt="" style="display:none">
+            <span class="dprev-ph">YOUR LOGO</span>
           </div>
         </div>
         <h4>Coffee Mug</h4>
@@ -555,15 +572,23 @@
 
       <div class="dprev-card">
         <div class="dprev-mockup-box">
-          <div class="dprev-product-bg dprev-bg-canvas">
-            <svg viewBox="0 0 200 210" class="dprev-svg">
-              <path d="M42 60 L52 192 Q52 205 65 205 L135 205 Q148 205 148 192 L158 60 Z" fill="#f5edd4" stroke="#d4c59a" stroke-width="2"/>
-              <path d="M68 60 Q68 22 100 22 Q132 22 132 60" fill="none" stroke="#b8a06a" stroke-width="5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="dprev-logo-zone" id="logoArea3">
-            <img class="dprev-logo-preview" id="logoPrev3" alt="Logo" style="display:none">
-            <span class="dprev-placeholder-text">YOUR LOGO</span>
+          <!-- Canvas tote bag with logo on front -->
+          <svg viewBox="0 0 300 340" class="dprev-full-svg">
+            <defs>
+              <linearGradient id="bGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#f5edd4"/><stop offset="100%" stop-color="#e8d9b0"/>
+              </linearGradient>
+              <filter id="bShadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.2"/></filter>
+            </defs>
+            <g filter="url(#bShadow)">
+              <path d="M65 90 L78 300 Q78 315 95 315 L205 315 Q222 315 222 300 L235 90 Z" fill="url(#bGrad)" stroke="#d4c59a" stroke-width="2"/>
+              <path d="M100 90 Q100 35 150 35 Q200 35 200 90" fill="none" stroke="#b8a06a" stroke-width="7" stroke-linecap="round"/>
+              <rect x="85" y="105" width="130" height="170" rx="4" fill="#ffffff" opacity="0.25"/>
+            </g>
+          </svg>
+          <div class="dprev-logo-on-product" id="logoArea3" style="top:44%;left:50%;width:38%;height:26%;">
+            <img class="dprev-logo-img" id="logoPrev3" alt="" style="display:none">
+            <span class="dprev-ph">YOUR LOGO</span>
           </div>
         </div>
         <h4>Tote Bag</h4>
@@ -572,16 +597,24 @@
 
       <div class="dprev-card">
         <div class="dprev-mockup-box">
-          <div class="dprev-product-bg dprev-bg-gold">
-            <svg viewBox="0 0 200 230" class="dprev-svg">
-              <rect x="30" y="15" width="140" height="200" rx="8" fill="#1e3d75" stroke="#152b58" stroke-width="2"/>
-              <rect x="30" y="15" width="14" height="200" rx="4" fill="#c9a84c"/>
-              <rect x="52" y="30" width="106" height="170" rx="4" fill="#ffffff" opacity="0.08"/>
-            </svg>
-          </div>
-          <div class="dprev-logo-zone" id="logoArea4">
-            <img class="dprev-logo-preview" id="logoPrev4" alt="Logo" style="display:none">
-            <span class="dprev-placeholder-text">YOUR LOGO</span>
+          <!-- Navy notebook with gold spine -->
+          <svg viewBox="0 0 280 340" class="dprev-full-svg">
+            <defs>
+              <linearGradient id="nGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e3d75"/><stop offset="100%" stop-color="#152b58"/>
+              </linearGradient>
+              <filter id="nShadow"><feDropShadow dx="4" dy="8" stdDeviation="12" flood-opacity="0.25"/></filter>
+            </defs>
+            <g filter="url(#nShadow)">
+              <rect x="40" y="20" width="200" height="300" rx="10" fill="url(#nGrad)" stroke="#0f2040" stroke-width="2"/>
+              <rect x="40" y="20" width="18" height="300" rx="5" fill="#c9a84c"/>
+              <rect x="70" y="40" width="155" height="260" rx="6" fill="#ffffff" opacity="0.06"/>
+              <line x1="70" y1="280" x2="220" y2="280" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+            </g>
+          </svg>
+          <div class="dprev-logo-on-product" id="logoArea4" style="top:35%;left:53%;width:42%;height:28%;">
+            <img class="dprev-logo-img" id="logoPrev4" alt="" style="display:none">
+            <span class="dprev-ph">YOUR LOGO</span>
           </div>
         </div>
         <h4>Branded Notebook</h4>

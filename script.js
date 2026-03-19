@@ -238,7 +238,7 @@ dPrevInput?.addEventListener('change', (e) => {
     // Display on all product mockups
     [1, 2, 3, 4].forEach(i => {
       const prevImg = document.getElementById(`logoPrev${i}`);
-      const placeholder = document.querySelector(`#logoArea${i} .dprev-placeholder`);
+      const placeholder = document.querySelector(`#logoArea${i} .dprev-ph`) || document.querySelector(`#logoArea${i} .dprev-placeholder`);
       if (prevImg) {
         prevImg.src = imgSrc;
         prevImg.style.display = 'block';
