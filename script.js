@@ -281,6 +281,14 @@ logoOpacitySlider?.addEventListener('input', () => {
   if (studioLogoImg) studioLogoImg.style.opacity = logoOpacitySlider.value / 100;
 });
 
+// Blend mode toggle
+const blendToggle = document.getElementById('blendToggle');
+blendToggle?.addEventListener('change', () => {
+  if (studioCanvas) {
+    studioCanvas.classList.toggle('blend-mode', blendToggle.checked);
+  }
+});
+
 // DRAG FUNCTIONALITY (mouse + touch)
 let isDragging = false;
 let dragStartX, dragStartY, logoStartX, logoStartY;

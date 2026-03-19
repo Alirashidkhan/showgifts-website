@@ -510,7 +510,7 @@
           <div class="dprev-upload-ico"><i class="fas fa-cloud-upload-alt"></i></div>
           <h3>Drag your logo here</h3>
           <p>or <span class="dprev-browse-link">click to browse</span></p>
-          <small>PNG, JPG, SVG up to 5MB</small>
+          <small>PNG, JPG, SVG up to 5MB &middot; Transparent or white background works best</small>
         </div>
         <input type="file" id="dPrevInput" accept="image/*" hidden>
       </div>
@@ -545,13 +545,13 @@
           <button class="studio-prod-btn active" data-product="tshirt" data-img="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80">
             <i class="fas fa-tshirt"></i> T-Shirt
           </button>
-          <button class="studio-prod-btn" data-product="mug" data-img="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=800&q=80">
+          <button class="studio-prod-btn" data-product="mug" data-img="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80">
             <i class="fas fa-mug-hot"></i> Coffee Mug
           </button>
-          <button class="studio-prod-btn" data-product="bag" data-img="https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=800&q=80">
+          <button class="studio-prod-btn" data-product="bag" data-img="https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80">
             <i class="fas fa-shopping-bag"></i> Tote Bag
           </button>
-          <button class="studio-prod-btn" data-product="notebook" data-img="https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=800&q=80">
+          <button class="studio-prod-btn" data-product="notebook" data-img="https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80">
             <i class="fas fa-book"></i> Notebook
           </button>
         </div>
@@ -566,7 +566,15 @@
 
         <div class="studio-controls">
           <h4>Opacity</h4>
-          <input type="range" id="logoOpacitySlider" min="30" max="100" value="85" class="studio-slider">
+          <input type="range" id="logoOpacitySlider" min="30" max="100" value="90" class="studio-slider">
+        </div>
+
+        <div class="studio-controls">
+          <label class="studio-toggle">
+            <input type="checkbox" id="blendToggle">
+            <span class="studio-toggle-label">Blend into product</span>
+            <small class="studio-toggle-hint">Best for logos with white background</small>
+          </label>
         </div>
 
         <button class="btn btn-gold btn-block studio-quote-btn" onclick="document.getElementById('studioClose').click(); document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">
