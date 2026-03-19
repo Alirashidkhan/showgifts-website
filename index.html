@@ -9,8 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- html2canvas for mockup download -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230f2040'/><text x='50' y='68' font-size='52' font-family='Georgia,serif' font-weight='700' fill='%23c9a84c' text-anchor='middle'>SG</text></svg>">
 
@@ -524,74 +522,72 @@
   </div>
 </section>
 
-<!-- FULL-PAGE MOCKUP MODAL -->
-<div id="mockupModal" class="mockup-modal">
-  <div class="mockup-modal-overlay"></div>
-  <div class="mockup-modal-content">
+<!-- DESIGN STUDIO MODAL -->
+<div id="studioModal" class="studio-modal">
+  <div class="studio-content">
 
-    <!-- Close Button -->
-    <button class="mockup-close" id="mockupClose" aria-label="Close mockup modal">
-      <i class="fas fa-times"></i>
-    </button>
-
-    <!-- Modal Header -->
-    <div class="mockup-header">
-      <h2>Your Brand Preview</h2>
-      <p>See your logo on our premium merchandise</p>
+    <!-- Top bar -->
+    <div class="studio-topbar">
+      <div class="studio-title">
+        <i class="fas fa-paint-brush"></i>
+        <span>Design Studio</span>
+      </div>
+      <button class="studio-close" id="studioClose"><i class="fas fa-times"></i></button>
     </div>
 
-    <!-- 2x2 Grid of Product Mockups -->
-    <div class="mockup-grid">
+    <!-- Main area: sidebar + canvas -->
+    <div class="studio-main">
 
-      <!-- Product 1: T-Shirt -->
-      <div class="mockup-item">
-        <div class="mockup-product">
-          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="White T-Shirt" class="product-photo">
-          <img class="logo-overlay" id="logoOverlay1" alt="Company Logo" data-position="tshirt">
-          <span class="product-label">T-Shirt</span>
+      <!-- Left sidebar: product selector -->
+      <div class="studio-sidebar">
+        <h4>Select Product</h4>
+        <div class="studio-products">
+          <button class="studio-prod-btn active" data-product="tshirt" data-img="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80">
+            <i class="fas fa-tshirt"></i> T-Shirt
+          </button>
+          <button class="studio-prod-btn" data-product="mug" data-img="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=800&q=80">
+            <i class="fas fa-mug-hot"></i> Coffee Mug
+          </button>
+          <button class="studio-prod-btn" data-product="bag" data-img="https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=800&q=80">
+            <i class="fas fa-shopping-bag"></i> Tote Bag
+          </button>
+          <button class="studio-prod-btn" data-product="notebook" data-img="https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=800&q=80">
+            <i class="fas fa-book"></i> Notebook
+          </button>
         </div>
+
+        <div class="studio-controls">
+          <h4>Logo Size</h4>
+          <input type="range" id="logoSizeSlider" min="10" max="80" value="30" class="studio-slider">
+          <div class="studio-size-labels">
+            <span>Small</span><span>Large</span>
+          </div>
+        </div>
+
+        <div class="studio-controls">
+          <h4>Opacity</h4>
+          <input type="range" id="logoOpacitySlider" min="30" max="100" value="85" class="studio-slider">
+        </div>
+
+        <button class="btn btn-gold btn-block studio-quote-btn" onclick="document.getElementById('studioClose').click(); document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">
+          Get a Free Quote <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
 
-      <!-- Product 2: Coffee Mug -->
-      <div class="mockup-item">
-        <div class="mockup-product">
-          <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=80" alt="White Coffee Mug" class="product-photo">
-          <img class="logo-overlay" id="logoOverlay2" alt="Company Logo" data-position="mug">
-          <span class="product-label">Coffee Mug</span>
-        </div>
-      </div>
-
-      <!-- Product 3: Tote Bag -->
-      <div class="mockup-item">
-        <div class="mockup-product">
-          <img src="https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=600&q=80" alt="Canvas Tote Bag" class="product-photo">
-          <img class="logo-overlay" id="logoOverlay3" alt="Company Logo" data-position="tote">
-          <span class="product-label">Tote Bag</span>
-        </div>
-      </div>
-
-      <!-- Product 4: Notebook -->
-      <div class="mockup-item">
-        <div class="mockup-product">
-          <img src="https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=600&q=80" alt="White Notebook" class="product-photo">
-          <img class="logo-overlay" id="logoOverlay4" alt="Company Logo" data-position="notebook">
-          <span class="product-label">Notebook</span>
+      <!-- Center canvas -->
+      <div class="studio-canvas-area">
+        <div class="studio-canvas" id="studioCanvas">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80" alt="Product" class="studio-product-img" id="studioProductImg">
+          <div class="studio-logo-wrapper" id="studioLogoWrapper">
+            <img id="studioLogoImg" class="studio-logo-img" alt="Your Logo" draggable="false">
+          </div>
+          <div class="studio-hint" id="studioHint">
+            <i class="fas fa-arrows-alt"></i> Drag to position &middot; Use slider to resize
+          </div>
         </div>
       </div>
 
     </div>
-
-    <!-- CTA Footer -->
-    <div class="mockup-footer">
-      <div class="mockup-footer-text">
-        <h3>Love what you see?</h3>
-      </div>
-      <div class="mockup-footer-btns">
-        <a href="#contact" class="btn btn-gold btn-lg">Get This Designed <i class="fas fa-arrow-right"></i></a>
-        <button class="btn btn-outline-navy btn-lg" id="downloadPreviewBtn">Download Preview <i class="fas fa-download"></i></button>
-      </div>
-    </div>
-
   </div>
 </div>
 

@@ -117,7 +117,6 @@ const popupCta     = document.getElementById('popupCta');
 function closePopup() {
   popupOverlay?.classList.remove('show');
   document.body.style.overflow = '';
-  localStorage.setItem('promoPopupDismissed', Date.now().toString());
 }
 
 popupClose?.addEventListener('click', closePopup);
@@ -126,18 +125,14 @@ popupOverlay?.addEventListener('click', (e) => {
 });
 popupCta?.addEventListener('click', closePopup);
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closePopup();
+  if (e.key === 'Escape' && popupOverlay?.classList.contains('show')) closePopup();
 });
 
-// Show popup after 3 seconds — but only once per 24 hours
-const lastDismissed = localStorage.getItem('promoPopupDismissed');
-const oneDayMs = 24 * 60 * 60 * 1000;
-if (!lastDismissed || (Date.now() - parseInt(lastDismissed)) > oneDayMs) {
-  setTimeout(() => {
-    popupOverlay?.classList.add('show');
-    document.body.style.overflow = 'hidden';
-  }, 3000);
-}
+// Show popup 3 seconds after every page load
+setTimeout(() => {
+  popupOverlay?.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}, 3000);
 
 /* ── Contact Form ─────────────────────────────────────────── */
 const cform   = document.getElementById('cform');
@@ -205,142 +200,140 @@ cform?.querySelectorAll('input, textarea, select').forEach(inp => {
   });
 });
 
-/* ── Design Preview — Logo Upload & Mockup Modal ──────────────── */
+/* ── Design Preview — Logo Upload & Studio ──────────────── */
 const dPrevUpload = document.getElementById('dPrevUpload');
 const dPrevInput = document.getElementById('dPrevInput');
-const dPrevBrowseLink = document.querySelector('.dprev-browse-link');
-const mockupModal = document.getElementById('mockupModal');
-const mockupClose = document.getElementById('mockupClose');
-const downloadPreviewBtn = document.getElementById('downloadPreviewBtn');
+const studioModal = document.getElementById('studioModal');
+const studioClose = document.getElementById('studioClose');
+const studioCanvas = document.getElementById('studioCanvas');
+const studioProductImg = document.getElementById('studioProductImg');
+const studioLogoWrapper = document.getElementById('studioLogoWrapper');
+const studioLogoImg = document.getElementById('studioLogoImg');
+const logoSizeSlider = document.getElementById('logoSizeSlider');
+const logoOpacitySlider = document.getElementById('logoOpacitySlider');
+const studioHint = document.getElementById('studioHint');
 
-// Handle click on upload area
+// Upload handlers
 dPrevUpload?.addEventListener('click', () => dPrevInput?.click());
-
-// Handle browse link click
-dPrevBrowseLink?.addEventListener('click', (e) => {
+document.querySelector('.dprev-browse-link')?.addEventListener('click', (e) => {
   e.preventDefault();
   dPrevInput?.click();
 });
 
-// Handle file selection
 dPrevInput?.addEventListener('change', (e) => {
   const file = e.target.files?.[0];
   if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { alert('File size must be less than 5MB'); return; }
 
-  // Validate file size (5MB max)
-  const maxSize = 5 * 1024 * 1024;
-  if (file.size > maxSize) {
-    alert('File size must be less than 5MB');
-    return;
-  }
-
-  // Read and display the logo
   const reader = new FileReader();
-  reader.onload = (event) => {
-    const imgSrc = event.target?.result;
-
-    // Set logo on all 4 product overlays
-    [1, 2, 3, 4].forEach(i => {
-      const logoImg = document.getElementById(`logoOverlay${i}`);
-      if (logoImg) {
-        logoImg.src = imgSrc;
-        logoImg.style.display = 'block';
-      }
-    });
-
-    // Open the mockup modal
-    openMockupModal();
+  reader.onload = (ev) => {
+    if (studioLogoImg) studioLogoImg.src = ev.target.result;
+    openStudio();
   };
   reader.readAsDataURL(file);
 });
 
-// Open mockup modal
-function openMockupModal() {
-  mockupModal?.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-// Close mockup modal
-function closeMockupModal() {
-  mockupModal?.classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-// Close button click
-mockupClose?.addEventListener('click', closeMockupModal);
-
-// Click on overlay to close
-mockupModal?.addEventListener('click', (e) => {
-  if (e.target === mockupModal) closeMockupModal();
-});
-
-// Escape key to close
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mockupModal?.classList.contains('show')) {
-    closeMockupModal();
-  }
-});
-
-// Download preview button
-downloadPreviewBtn?.addEventListener('click', async () => {
-  const mockupGrid = document.querySelector('.mockup-grid');
-  if (!mockupGrid) return;
-
-  // Disable button while processing
-  downloadPreviewBtn.disabled = true;
-  const originalText = downloadPreviewBtn.innerHTML;
-  downloadPreviewBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-
-  try {
-    const canvas = await html2canvas(mockupGrid, {
-      backgroundColor: '#ffffff',
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-    });
-
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png');
-    link.download = `brand-preview-${new Date().toISOString().split('T')[0]}.png`;
-    link.click();
-  } catch (err) {
-    console.error('Download failed:', err);
-    alert('Could not download preview. Please try again.');
-  } finally {
-    downloadPreviewBtn.disabled = false;
-    downloadPreviewBtn.innerHTML = originalText;
-  }
-});
-
-// Handle drag and drop
-dPrevUpload?.addEventListener('dragover', (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  dPrevUpload.style.borderColor = 'var(--gold)';
-  dPrevUpload.style.background = 'rgba(201, 168, 76, 0.08)';
-});
-
-dPrevUpload?.addEventListener('dragleave', (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  dPrevUpload.style.borderColor = '';
-  dPrevUpload.style.background = '';
-});
-
+// Drag and drop on upload area
+dPrevUpload?.addEventListener('dragover', (e) => { e.preventDefault(); dPrevUpload.style.borderColor = 'var(--gold)'; dPrevUpload.style.background = 'rgba(201,168,76,0.08)'; });
+dPrevUpload?.addEventListener('dragleave', (e) => { e.preventDefault(); dPrevUpload.style.borderColor = ''; dPrevUpload.style.background = ''; });
 dPrevUpload?.addEventListener('drop', (e) => {
   e.preventDefault();
-  e.stopPropagation();
-  dPrevUpload.style.borderColor = '';
-  dPrevUpload.style.background = '';
-
-  const files = e.dataTransfer?.files;
-  if (files?.length) {
-    dPrevInput.files = files;
-    // Trigger change event
-    const event = new Event('change', { bubbles: true });
-    dPrevInput.dispatchEvent(event);
-  }
+  dPrevUpload.style.borderColor = ''; dPrevUpload.style.background = '';
+  if (e.dataTransfer?.files?.length) { dPrevInput.files = e.dataTransfer.files; dPrevInput.dispatchEvent(new Event('change', { bubbles: true })); }
 });
+
+// Open/close studio
+function openStudio() {
+  studioModal?.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeStudio() {
+  studioModal?.classList.remove('show');
+  document.body.style.overflow = '';
+}
+studioClose?.addEventListener('click', closeStudio);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && studioModal?.classList.contains('show')) closeStudio();
+});
+
+// Product switcher
+document.querySelectorAll('.studio-prod-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.studio-prod-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (studioProductImg) studioProductImg.src = btn.dataset.img;
+    // Reset logo position for new product
+    if (studioLogoWrapper) {
+      studioLogoWrapper.style.top = '30%';
+      studioLogoWrapper.style.left = '50%';
+      studioLogoWrapper.style.transform = 'translate(-50%, -50%)';
+    }
+  });
+});
+
+// Size slider
+logoSizeSlider?.addEventListener('input', () => {
+  if (studioLogoWrapper) studioLogoWrapper.style.width = logoSizeSlider.value + '%';
+});
+
+// Opacity slider
+logoOpacitySlider?.addEventListener('input', () => {
+  if (studioLogoImg) studioLogoImg.style.opacity = logoOpacitySlider.value / 100;
+});
+
+// DRAG FUNCTIONALITY (mouse + touch)
+let isDragging = false;
+let dragStartX, dragStartY, logoStartX, logoStartY;
+
+function getPos(e) {
+  if (e.touches) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  return { x: e.clientX, y: e.clientY };
+}
+
+function startDrag(e) {
+  if (!studioCanvas || !studioLogoWrapper) return;
+  isDragging = true;
+  studioLogoWrapper.classList.add('dragging');
+  const pos = getPos(e);
+  const rect = studioLogoWrapper.getBoundingClientRect();
+  dragStartX = pos.x - rect.left;
+  dragStartY = pos.y - rect.top;
+  // Remove the translate(-50%,-50%) on first drag so positioning is absolute
+  studioLogoWrapper.style.transform = 'none';
+  studioLogoWrapper.style.left = rect.left - studioCanvas.getBoundingClientRect().left + 'px';
+  studioLogoWrapper.style.top = rect.top - studioCanvas.getBoundingClientRect().top + 'px';
+  e.preventDefault();
+  // Hide hint
+  if (studioHint) { studioHint.classList.add('hidden'); }
+}
+
+function moveDrag(e) {
+  if (!isDragging || !studioCanvas || !studioLogoWrapper) return;
+  e.preventDefault();
+  const pos = getPos(e);
+  const canvasRect = studioCanvas.getBoundingClientRect();
+  let newX = pos.x - canvasRect.left - dragStartX;
+  let newY = pos.y - canvasRect.top - dragStartY;
+  // Clamp within canvas
+  const logoW = studioLogoWrapper.offsetWidth;
+  const logoH = studioLogoWrapper.offsetHeight;
+  newX = Math.max(0, Math.min(newX, canvasRect.width - logoW));
+  newY = Math.max(0, Math.min(newY, canvasRect.height - logoH));
+  studioLogoWrapper.style.left = newX + 'px';
+  studioLogoWrapper.style.top = newY + 'px';
+}
+
+function endDrag() {
+  isDragging = false;
+  studioLogoWrapper?.classList.remove('dragging');
+}
+
+studioLogoWrapper?.addEventListener('mousedown', startDrag);
+document.addEventListener('mousemove', moveDrag);
+document.addEventListener('mouseup', endDrag);
+studioLogoWrapper?.addEventListener('touchstart', startDrag, { passive: false });
+document.addEventListener('touchmove', moveDrag, { passive: false });
+document.addEventListener('touchend', endDrag);
 
 /* ── Hero parallax ────────────────────────────────────────── */
 const heroImg = document.querySelector('.hero-img');
