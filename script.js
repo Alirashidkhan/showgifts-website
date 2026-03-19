@@ -205,10 +205,13 @@ cform?.querySelectorAll('input, textarea, select').forEach(inp => {
   });
 });
 
-/* ── Design Preview — Logo Upload ───────────────────────────── */
+/* ── Design Preview — Logo Upload & Mockup Modal ──────────────── */
 const dPrevUpload = document.getElementById('dPrevUpload');
 const dPrevInput = document.getElementById('dPrevInput');
 const dPrevBrowseLink = document.querySelector('.dprev-browse-link');
+const mockupModal = document.getElementById('mockupModal');
+const mockupClose = document.getElementById('mockupClose');
+const downloadPreviewBtn = document.getElementById('downloadPreviewBtn');
 
 // Handle click on upload area
 dPrevUpload?.addEventListener('click', () => dPrevInput?.click());
@@ -235,18 +238,78 @@ dPrevInput?.addEventListener('change', (e) => {
   const reader = new FileReader();
   reader.onload = (event) => {
     const imgSrc = event.target?.result;
-    // Display on all product mockups
+
+    // Set logo on all 4 product overlays
     [1, 2, 3, 4].forEach(i => {
-      const prevImg = document.getElementById(`logoPrev${i}`);
-      const placeholder = document.querySelector(`#logoArea${i} .mock-ph`) || document.querySelector(`#logoArea${i} .dprev-ph`) || document.querySelector(`#logoArea${i} .dprev-placeholder`);
-      if (prevImg) {
-        prevImg.src = imgSrc;
-        prevImg.style.display = 'block';
-        if (placeholder) placeholder.style.display = 'none';
+      const logoImg = document.getElementById(`logoOverlay${i}`);
+      if (logoImg) {
+        logoImg.src = imgSrc;
+        logoImg.style.display = 'block';
       }
     });
+
+    // Open the mockup modal
+    openMockupModal();
   };
   reader.readAsDataURL(file);
+});
+
+// Open mockup modal
+function openMockupModal() {
+  mockupModal?.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+// Close mockup modal
+function closeMockupModal() {
+  mockupModal?.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// Close button click
+mockupClose?.addEventListener('click', closeMockupModal);
+
+// Click on overlay to close
+mockupModal?.addEventListener('click', (e) => {
+  if (e.target === mockupModal) closeMockupModal();
+});
+
+// Escape key to close
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mockupModal?.classList.contains('show')) {
+    closeMockupModal();
+  }
+});
+
+// Download preview button
+downloadPreviewBtn?.addEventListener('click', async () => {
+  const mockupGrid = document.querySelector('.mockup-grid');
+  if (!mockupGrid) return;
+
+  // Disable button while processing
+  downloadPreviewBtn.disabled = true;
+  const originalText = downloadPreviewBtn.innerHTML;
+  downloadPreviewBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+
+  try {
+    const canvas = await html2canvas(mockupGrid, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+    });
+
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = `brand-preview-${new Date().toISOString().split('T')[0]}.png`;
+    link.click();
+  } catch (err) {
+    console.error('Download failed:', err);
+    alert('Could not download preview. Please try again.');
+  } finally {
+    downloadPreviewBtn.disabled = false;
+    downloadPreviewBtn.innerHTML = originalText;
+  }
 });
 
 // Handle drag and drop
