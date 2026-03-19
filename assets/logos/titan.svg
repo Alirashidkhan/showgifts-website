@@ -1,7 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="24" font-weight="700"
-    fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="4" style="">TITAN</text>
+  <defs>
+    <style>
+      .titan-text { font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; fill: #1a1a1a; letter-spacing: 2px; }
+    </style>
+  </defs>
+  <!-- Watch/time symbol -->
+  <g fill="none" stroke="#1a1a1a" stroke-width="2">
+    <circle cx="18" cy="28" r="7"/>
+    <line x1="18" y1="23" x2="18" y2="26"/>
+    <line x1="18" y1="28" x2="22" y2="28"/>
+  </g>
+  <text x="75" y="37" class="titan-text">TITAN</text>
 </svg>

@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="18" font-weight="800"
-    fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="2" style="">URBAN GEAR</text>
+  <defs>
+    <style>
+      .ug-text { font-family: Arial, sans-serif; font-size: 16px; font-weight: 800; fill: #1a1a1a; letter-spacing: 1px; }
+    </style>
+  </defs>
+  <!-- Gear/mechanical icon -->
+  <g fill="#1a1a1a">
+    <circle cx="18" cy="28" r="6" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+    <circle cx="18" cy="28" r="3" fill="#1a1a1a"/>
+    <path d="M 18 20 L 19 22 L 17 22 Z"/>
+    <path d="M 26 28 L 24 29 L 24 27 Z"/>
+    <path d="M 18 36 L 17 34 L 19 34 Z"/>
+    <path d="M 10 28 L 12 27 L 12 29 Z"/>
+  </g>
+  <text x="80" y="37" class="ug-text">URBAN GEAR</text>
 </svg>

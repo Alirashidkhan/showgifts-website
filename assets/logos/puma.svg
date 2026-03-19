@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="26" font-weight="900"
-    fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="3" style="">PUMA</text>
+  <defs>
+    <style>
+      .puma-text { font-family: Arial, sans-serif; font-weight: 900; font-size: 32px; fill: #000; }
+    </style>
+  </defs>
+  <g>
+    <!-- Cat head silhouette -->
+    <path d="M 25 25 Q 22 15 28 12 Q 32 10 35 13 L 32 25 Z" fill="#000"/>
+    <path d="M 45 25 Q 48 15 42 12 Q 38 10 35 13 L 38 25 Z" fill="#000"/>
+    <!-- Head -->
+    <circle cx="35" cy="28" r="10" fill="#000"/>
+    <!-- Body -->
+    <rect x="28" y="38" width="14" height="12" rx="3" fill="#000"/>
+  </g>
+  <text x="65" y="37" class="puma-text">PUMA</text>
 </svg>

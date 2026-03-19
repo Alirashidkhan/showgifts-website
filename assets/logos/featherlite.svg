@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="18" font-weight="700"
-    fill="#0a4a8a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="0" style="">Featherlite</text>
+  <defs>
+    <style>
+      .featherlite-text { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #0a4a8a; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+  <!-- Feather symbol -->
+  <g fill="#0a4a8a">
+    <path d="M 18 38 Q 20 32 22 20 Q 22.5 18 23 20 Q 24 32 26 38 Z"/>
+    <path d="M 21 36 L 20 30"/>
+    <path d="M 21 36 L 22 31"/>
+    <path d="M 21 36 L 24 33"/>
+  </g>
+  <text x="80" y="37" class="featherlite-text">Featherlite</text>
 </svg>

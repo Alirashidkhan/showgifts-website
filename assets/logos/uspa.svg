@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="15" font-weight="700"
-    fill="#1a3a6b" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="1" style="">US POLO ASSN.</text>
+  <defs>
+    <style>
+      .uspa-text { font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; fill: #1a3a6b; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+  <!-- Polo player with mallet silhouette -->
+  <g fill="#1a3a6b">
+    <circle cx="16" cy="20" r="3.5"/>
+    <rect x="14" y="24" width="4" height="8" rx="1"/>
+    <rect x="12" y="32" width="8" height="3" rx="1"/>
+    <path d="M 18 24 L 26 16 L 27 17 L 19 25 Z"/>
+  </g>
+  <text x="65" y="37" class="uspa-text">U.S. POLO ASSN.</text>
 </svg>

@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="22" font-weight="700"
-    fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="2" style="">M&amp;S</text>
+  <defs>
+    <style>
+      .ms-text { font-family: Georgia, serif; font-size: 20px; font-weight: 700; fill: #1a1a1a; }
+    </style>
+  </defs>
+  <!-- Decorative serif elements -->
+  <rect x="10" y="18" width="16" height="24" fill="none" stroke="#d4a373" stroke-width="2" rx="2"/>
+  <circle cx="32" cy="30" r="2" fill="#d4a373"/>
+  <text x="70" y="37" class="ms-text">M&amp;S</text>
 </svg>

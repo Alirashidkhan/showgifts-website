@@ -1,7 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="17" font-weight="700"
-    fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="2" style="">VAN HEUSEN</text>
+  <defs>
+    <style>
+      .vh-text { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #1a1a1a; letter-spacing: 1px; }
+    </style>
+  </defs>
+  <!-- Dress shirt collar icon -->
+  <g fill="#1a1a1a">
+    <path d="M 12 26 L 16 20 L 24 20 L 28 26 L 26 28 L 14 28 Z"/>
+    <rect x="18" y="28" width="4" height="6" fill="#1a1a1a"/>
+  </g>
+  <text x="75" y="37" class="vh-text">VAN HEUSEN</text>
 </svg>

@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="20" font-weight="700"
-    fill="#6b46c1" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="0" style="">sprinklr</text>
+  <defs>
+    <style>
+      .sprinklr-text { font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; fill: #6b46c1; }
+    </style>
+  </defs>
+  <!-- Cloud/data drops -->
+  <g fill="#6b46c1">
+    <circle cx="12" cy="22" r="1.5"/>
+    <circle cx="18" cy="20" r="1.5"/>
+    <circle cx="24" cy="22" r="1.5"/>
+    <circle cx="15" cy="26" r="1.5"/>
+    <circle cx="21" cy="27" r="1.5"/>
+    <circle cx="18" cy="32" r="1.5"/>
+  </g>
+  <text x="75" y="37" class="sprinklr-text">sprinklr</text>
 </svg>

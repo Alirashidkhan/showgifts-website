@@ -1,7 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <text x="100" y="31"
-    font-family="Inter, Arial, Helvetica, sans-serif"
-    font-size="18" font-weight="700"
-    fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle"
-    letter-spacing="2" style="">BENETTON</text>
+  <defs>
+    <style>
+      .benetton-text { font-family: Arial, sans-serif; font-size: 15px; font-weight: 700; fill: #1a1a1a; letter-spacing: 1px; }
+    </style>
+  </defs>
+  <!-- Colorful squares (United Colors of Benetton) -->
+  <g>
+    <rect x="8" y="18" width="6" height="6" fill="#FFF700"/>
+    <rect x="15" y="18" width="6" height="6" fill="#FF0000"/>
+    <rect x="22" y="18" width="6" height="6" fill="#00A651"/>
+    <rect x="29" y="18" width="6" height="6" fill="#0066CC"/>
+    <rect x="8" y="25" width="6" height="6" fill="#FF6B35"/>
+    <rect x="15" y="25" width="6" height="6" fill="#6B4C9A"/>
+    <rect x="22" y="25" width="6" height="6" fill="#FF1493"/>
+  </g>
+  <text x="65" y="36" class="benetton-text">BENETTON</text>
 </svg>
