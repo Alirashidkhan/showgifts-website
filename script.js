@@ -109,6 +109,23 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+/* ── Announcement Bar ─────────────────────────────────────── */
+const annBar = document.getElementById('annBar');
+const annClose = document.getElementById('annClose');
+
+annClose?.addEventListener('click', () => {
+  annBar?.classList.add('hidden');
+  if (header) {
+    header.style.marginTop = '0';
+  }
+  localStorage.setItem('announcementBarHidden', 'true');
+});
+
+// Restore announcement bar visibility on page load
+if (!localStorage.getItem('announcementBarHidden')) {
+  annBar?.classList.remove('hidden');
+}
+
 /* ── Contact Form ─────────────────────────────────────────── */
 const cform   = document.getElementById('cform');
 const formOk  = document.getElementById('formOk');
@@ -118,6 +135,11 @@ cform?.addEventListener('submit', e => {
   e.preventDefault();
   const name  = document.getElementById('f-name');
   const email = document.getElementById('f-email');
+  const company = document.getElementById('f-company');
+  const phone = document.getElementById('f-phone');
+  const service = document.getElementById('f-service');
+  const msg = document.getElementById('f-msg');
+
   let valid = true;
 
   [name, email].forEach(inp => {
@@ -134,6 +156,29 @@ cform?.addEventListener('submit', e => {
     fSubmit.innerHTML = 'Sending&hellip; <i class="fas fa-spinner fa-spin"></i>';
   }
 
+  // Prepare form data
+  const formData = new FormData();
+  formData.append('name', name?.value || '');
+  formData.append('email', email?.value || '');
+  formData.append('company', company?.value || '');
+  formData.append('phone', phone?.value || '');
+  formData.append('service', service?.value || '');
+  formData.append('message', msg?.value || '');
+
+  // Submit to FormSubmit.co (primary, for immediate email)
+  fetch('https://formsubmit.co/ajax/showgifts5@gmail.com', {
+    method: 'POST',
+    body: formData,
+  }).catch(err => console.log('FormSubmit error (expected):', err));
+
+  // Submit to Google Apps Script (secondary, for data logging)
+  // Replace GOOGLE_SCRIPT_ID with your actual Google Apps Script deployment ID
+  const googleScriptUrl = 'https://script.google.com/macros/s/GOOGLE_SCRIPT_ID/exec';
+  fetch(googleScriptUrl, {
+    method: 'POST',
+    body: formData,
+  }).catch(err => console.log('Google Script error:', err));
+
   setTimeout(() => {
     if (cform) cform.style.display = 'none';
     formOk?.classList.add('show');
@@ -145,6 +190,80 @@ cform?.querySelectorAll('input, textarea, select').forEach(inp => {
     inp.style.borderColor = '';
     inp.style.boxShadow   = '';
   });
+});
+
+/* ── Design Preview — Logo Upload ───────────────────────────── */
+const dPrevUpload = document.getElementById('dPrevUpload');
+const dPrevInput = document.getElementById('dPrevInput');
+const dPrevBrowseLink = document.querySelector('.dprev-browse-link');
+
+// Handle click on upload area
+dPrevUpload?.addEventListener('click', () => dPrevInput?.click());
+
+// Handle browse link click
+dPrevBrowseLink?.addEventListener('click', (e) => {
+  e.preventDefault();
+  dPrevInput?.click();
+});
+
+// Handle file selection
+dPrevInput?.addEventListener('change', (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  // Validate file size (5MB max)
+  const maxSize = 5 * 1024 * 1024;
+  if (file.size > maxSize) {
+    alert('File size must be less than 5MB');
+    return;
+  }
+
+  // Read and display the logo
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const imgSrc = event.target?.result;
+    // Display on all product mockups
+    [1, 2, 3, 4].forEach(i => {
+      const prevImg = document.getElementById(`logoPrev${i}`);
+      const placeholder = document.querySelector(`#logoArea${i} .dprev-placeholder`);
+      if (prevImg) {
+        prevImg.src = imgSrc;
+        prevImg.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
+      }
+    });
+  };
+  reader.readAsDataURL(file);
+});
+
+// Handle drag and drop
+dPrevUpload?.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dPrevUpload.style.borderColor = 'var(--gold)';
+  dPrevUpload.style.background = 'rgba(201, 168, 76, 0.08)';
+});
+
+dPrevUpload?.addEventListener('dragleave', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dPrevUpload.style.borderColor = '';
+  dPrevUpload.style.background = '';
+});
+
+dPrevUpload?.addEventListener('drop', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dPrevUpload.style.borderColor = '';
+  dPrevUpload.style.background = '';
+
+  const files = e.dataTransfer?.files;
+  if (files?.length) {
+    dPrevInput.files = files;
+    // Trigger change event
+    const event = new Event('change', { bubbles: true });
+    dPrevInput.dispatchEvent(event);
+  }
 });
 
 /* ── Hero parallax ────────────────────────────────────────── */
