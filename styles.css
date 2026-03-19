@@ -1104,244 +1104,131 @@ select       { -webkit-appearance: none; appearance: none; }
 }
 
 /* ================================================================
-   DESIGN PREVIEW — TRY YOUR BRAND
+   DESIGN PREVIEW — TRY YOUR BRAND (3D vibrant cards)
 ================================================================ */
-
-.dprev-upload-wrapper {
-  margin-bottom: 60px;
-}
-
+.dprev-upload-wrapper { margin-bottom: 50px; }
 .dprev-upload {
   border: 2px dashed var(--gold);
   border-radius: var(--r-lg);
-  padding: 50px 40px;
+  padding: 44px 36px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   background: var(--white);
 }
-
 .dprev-upload:hover {
   border-color: var(--gold-600);
-  background: rgba(201, 168, 76, 0.04);
+  background: var(--gold-50);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.12);
 }
-
-.dprev-upload-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+.dprev-upload-content { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.dprev-upload-ico {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--gold-50); color: var(--gold-600);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 4px;
 }
+.dprev-upload h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-h); margin: 0; }
+.dprev-upload p { color: var(--text-m); margin: 0; font-size: 0.92rem; }
+.dprev-browse-link { color: var(--gold-600); font-weight: 700; cursor: pointer; text-decoration: underline; }
+.dprev-upload small { color: var(--text-m); font-size: 0.78rem; opacity: 0.6; }
 
-.dprev-upload-icon {
-  width: 48px;
-  height: 48px;
-  color: var(--gold);
-  opacity: 0.8;
-}
-
-.dprev-upload h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-h);
-  margin: 0;
-}
-
-.dprev-upload p {
-  color: var(--text-m);
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.dprev-browse-link {
-  color: var(--gold);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.dprev-upload small {
-  color: var(--text-m);
-  font-size: 0.82rem;
-  opacity: 0.7;
-}
-
-/* Product Mockups Grid */
+/* Product Cards — 3D vibrant style */
 .dprev-products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-  margin-bottom: 50px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
 }
-
 .dprev-card {
   text-align: center;
+  transition: transform 0.3s var(--ease);
 }
+.dprev-card:hover { transform: translateY(-6px); }
+.dprev-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-h); margin: 14px 0 3px; }
+.dprev-card > p { font-size: 0.82rem; color: var(--text-m); margin: 0; }
 
-.dprev-card h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-h);
-  margin-top: 20px;
-  margin-bottom: 4px;
-}
-
-.dprev-card > p {
-  font-size: 0.85rem;
-  color: var(--text-m);
-  margin: 0;
-}
-
-/* Mockup Container */
-.dprev-mockup {
+/* 3D mockup box */
+.dprev-mockup-box {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 1 / 1.1;
+  box-shadow: 0 12px 36px rgba(10,22,40,0.12), 0 2px 8px rgba(10,22,40,0.06);
+  transition: box-shadow 0.3s var(--ease);
+}
+.dprev-card:hover .dprev-mockup-box {
+  box-shadow: 0 20px 48px rgba(10,22,40,0.18), 0 4px 12px rgba(10,22,40,0.1);
 }
 
-.dprev-product-shape {
-  width: 100%;
-  height: 100%;
-  max-width: 180px;
-  max-height: 180px;
+/* Product background colors — vibrant */
+.dprev-product-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
 }
+.dprev-bg-navy   { background: linear-gradient(145deg, #1e3d75 0%, #0f2040 100%); }
+.dprev-bg-white  { background: linear-gradient(145deg, #f8f9fc 0%, #e8edf8 100%); }
+.dprev-bg-canvas { background: linear-gradient(145deg, #f5edd4 0%, #e8d9b0 100%); }
+.dprev-bg-gold   { background: linear-gradient(145deg, #fdf9f0 0%, #f0e8d0 100%); }
 
-/* Logo Preview Area */
-.dprev-logo-area {
+.dprev-svg { width: 70%; height: 70%; max-width: 160px; }
+
+/* Logo overlay zone */
+.dprev-logo-zone {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%; height: 35%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px dashed rgba(201,168,76,0.5);
+  border-radius: var(--r-xs);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(2px);
+  transition: border-color 0.3s;
 }
+.dprev-card:hover .dprev-logo-zone { border-color: var(--gold); }
 
 .dprev-logo-preview {
-  max-width: 70%;
-  max-height: 70%;
+  max-width: 85%; max-height: 85%;
   object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
-
-.dprev-placeholder {
-  position: absolute;
-  font-size: 0.75rem;
-  color: var(--gray-500);
-  opacity: 0.9;
+.dprev-placeholder-text {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.dprev-bg-white .dprev-placeholder-text,
+.dprev-bg-canvas .dprev-placeholder-text,
+.dprev-bg-gold .dprev-placeholder-text {
+  color: rgba(30,61,117,0.4);
+  text-shadow: none;
 }
 
-/* Different product positioning */
-.dprev-tshirt .dprev-logo-area {
-  width: 80px;
-  height: 60px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.dprev-cta { text-align: center; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
-
-.dprev-mug .dprev-logo-area {
-  width: 60px;
-  height: 60px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.dprev-totebag .dprev-logo-area {
-  width: 70px;
-  height: 80px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.dprev-notebook .dprev-logo-area {
-  width: 60px;
-  height: 80px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* CTA Section */
-.dprev-cta {
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .dprev-upload {
-    padding: 40px 24px;
-  }
-
-  .dprev-upload h3 {
-    font-size: 1rem;
-  }
-
-  .dprev-products {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-}
-
 @media (max-width: 640px) {
-  .dprev-upload {
-    padding: 35px 20px;
-  }
-
-  .dprev-upload h3 {
-    font-size: 1rem;
-  }
-
-  .dprev-upload p {
-    font-size: 0.9rem;
-  }
-
-  .dprev-products {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .dprev-card h4 {
-    font-size: 0.95rem;
-    margin-top: 14px;
-  }
-
-  .dprev-card > p {
-    font-size: 0.8rem;
-  }
+  .dprev-upload { padding: 32px 20px; }
+  .dprev-upload h3 { font-size: 1rem; }
+  .dprev-upload-ico { width: 48px; height: 48px; font-size: 1.2rem; }
+  .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .dprev-card h4 { font-size: 0.88rem; }
 }
-
 @media (max-width: 420px) {
-  .dprev-upload {
-    padding: 30px 16px;
-  }
-
-  .dprev-upload h3 {
-    font-size: 0.95rem;
-  }
-
-  .dprev-upload p {
-    font-size: 0.85rem;
-  }
-
-  .dprev-upload small {
-    font-size: 0.75rem;
-  }
-
-  .dprev-products {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .dprev-card h4 {
-    font-size: 0.9rem;
-    margin-top: 12px;
-  }
-
-  .dprev-card > p {
-    font-size: 0.78rem;
-  }
+  .dprev-upload { padding: 28px 16px; }
+  .dprev-upload h3 { font-size: 0.95rem; }
+  .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .dprev-mockup-box { aspect-ratio: 1 / 1.05; }
+  .dprev-placeholder-text { font-size: 0.5rem; letter-spacing: 1px; }
 }
 
 /* ================================================================

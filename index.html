@@ -495,23 +495,19 @@
 <!-- ========================================================
      DESIGN PREVIEW — TRY YOUR BRAND
 ======================================================== -->
-<section id="design-preview" class="section section-white">
+<section id="design-preview" class="section section-light">
   <div class="wrap">
     <div class="sec-hd rv">
       <span class="eyebrow">Design Preview</span>
       <h2 class="sec-h2">See Your Brand on<br><em>Premium Merchandise</em></h2>
-      <p class="sec-p">Upload your company logo to preview how it looks on our most popular products. Get inspired by real mockups.</p>
+      <p class="sec-p">Upload your company logo and instantly preview how it looks on our best-selling products.</p>
     </div>
 
     <!-- Logo Upload Area -->
     <div class="dprev-upload-wrapper rv">
       <div class="dprev-upload" id="dPrevUpload">
         <div class="dprev-upload-content">
-          <svg class="dprev-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="17 8 12 3 7 8"></polyline>
-            <line x1="12" y1="3" x2="12" y2="15"></line>
-          </svg>
+          <div class="dprev-upload-ico"><i class="fas fa-cloud-upload-alt"></i></div>
           <h3>Drag your logo here</h3>
           <p>or <span class="dprev-browse-link">click to browse</span></p>
           <small>PNG, JPG, SVG up to 5MB</small>
@@ -522,14 +518,17 @@
 
     <!-- Product Mockups Grid -->
     <div class="dprev-products rv delay-1">
+
       <div class="dprev-card">
-        <div class="dprev-mockup dprev-tshirt">
-          <svg viewBox="0 0 200 220" class="dprev-product-shape">
-            <path d="M60 30 L40 30 L15 55 L35 75 L50 60 L50 190 L150 190 L150 60 L165 75 L185 55 L160 30 L140 30 L130 45 Q100 60 70 45 Z" fill="#e8edf8" stroke="#c8cfe3" stroke-width="1.5"/>
-          </svg>
-          <div class="dprev-logo-area" id="logoArea1">
+        <div class="dprev-mockup-box">
+          <div class="dprev-product-bg dprev-bg-navy">
+            <svg viewBox="0 0 200 200" class="dprev-svg">
+              <path d="M55 25 L35 25 L8 52 L30 72 L46 56 L46 180 L154 180 L154 56 L170 72 L192 52 L165 25 L145 25 L133 40 Q100 56 67 40 Z" fill="#ffffff" opacity="0.95"/>
+            </svg>
+          </div>
+          <div class="dprev-logo-zone" id="logoArea1">
             <img class="dprev-logo-preview" id="logoPrev1" alt="Logo" style="display:none">
-            <span class="dprev-placeholder">Your Logo Here</span>
+            <span class="dprev-placeholder-text">YOUR LOGO</span>
           </div>
         </div>
         <h4>T-Shirt</h4>
@@ -537,15 +536,17 @@
       </div>
 
       <div class="dprev-card">
-        <div class="dprev-mockup dprev-mug">
-          <svg viewBox="0 0 200 200" class="dprev-product-shape">
-            <rect x="35" y="40" width="100" height="120" rx="8" fill="#f8f9fc" stroke="#c8cfe3" stroke-width="1.5"/>
-            <path d="M135 60 Q165 60 165 100 Q165 140 135 140" fill="none" stroke="#c8cfe3" stroke-width="5" stroke-linecap="round"/>
-            <ellipse cx="85" cy="40" rx="52" ry="10" fill="#f1f3f8" stroke="#c8cfe3" stroke-width="1.5"/>
-          </svg>
-          <div class="dprev-logo-area" id="logoArea2">
+        <div class="dprev-mockup-box">
+          <div class="dprev-product-bg dprev-bg-white">
+            <svg viewBox="0 0 200 200" class="dprev-svg">
+              <rect x="32" y="40" width="105" height="125" rx="10" fill="#ffffff" stroke="#e2e6f0" stroke-width="2"/>
+              <path d="M137 62 Q170 62 170 102 Q170 142 137 142" fill="none" stroke="#c8cfe3" stroke-width="7" stroke-linecap="round"/>
+              <ellipse cx="84" cy="40" rx="55" ry="12" fill="#f8f9fc" stroke="#e2e6f0" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="dprev-logo-zone" id="logoArea2">
             <img class="dprev-logo-preview" id="logoPrev2" alt="Logo" style="display:none">
-            <span class="dprev-placeholder">Your Logo Here</span>
+            <span class="dprev-placeholder-text">YOUR LOGO</span>
           </div>
         </div>
         <h4>Coffee Mug</h4>
@@ -553,14 +554,16 @@
       </div>
 
       <div class="dprev-card">
-        <div class="dprev-mockup dprev-totebag">
-          <svg viewBox="0 0 200 220" class="dprev-product-shape">
-            <path d="M45 65 L55 200 Q55 210 65 210 L135 210 Q145 210 145 200 L155 65 Z" fill="#faf4e3" stroke="#c8cfe3" stroke-width="1.5"/>
-            <path d="M70 65 Q70 25 100 25 Q130 25 130 65" fill="none" stroke="#c8cfe3" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-          <div class="dprev-logo-area" id="logoArea3">
+        <div class="dprev-mockup-box">
+          <div class="dprev-product-bg dprev-bg-canvas">
+            <svg viewBox="0 0 200 210" class="dprev-svg">
+              <path d="M42 60 L52 192 Q52 205 65 205 L135 205 Q148 205 148 192 L158 60 Z" fill="#f5edd4" stroke="#d4c59a" stroke-width="2"/>
+              <path d="M68 60 Q68 22 100 22 Q132 22 132 60" fill="none" stroke="#b8a06a" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="dprev-logo-zone" id="logoArea3">
             <img class="dprev-logo-preview" id="logoPrev3" alt="Logo" style="display:none">
-            <span class="dprev-placeholder">Your Logo Here</span>
+            <span class="dprev-placeholder-text">YOUR LOGO</span>
           </div>
         </div>
         <h4>Tote Bag</h4>
@@ -568,27 +571,27 @@
       </div>
 
       <div class="dprev-card">
-        <div class="dprev-mockup dprev-notebook">
-          <svg viewBox="0 0 200 240" class="dprev-product-shape">
-            <rect x="35" y="20" width="130" height="200" rx="6" fill="#fdf9f0" stroke="#c8cfe3" stroke-width="1.5"/>
-            <rect x="35" y="20" width="12" height="200" rx="2" fill="#e8d098"/>
-            <line x1="60" y1="60" x2="150" y2="60" stroke="#e2e6f0" stroke-width="1"/>
-            <line x1="60" y1="80" x2="150" y2="80" stroke="#e2e6f0" stroke-width="1"/>
-            <line x1="60" y1="100" x2="130" y2="100" stroke="#e2e6f0" stroke-width="1"/>
-          </svg>
-          <div class="dprev-logo-area" id="logoArea4">
+        <div class="dprev-mockup-box">
+          <div class="dprev-product-bg dprev-bg-gold">
+            <svg viewBox="0 0 200 230" class="dprev-svg">
+              <rect x="30" y="15" width="140" height="200" rx="8" fill="#1e3d75" stroke="#152b58" stroke-width="2"/>
+              <rect x="30" y="15" width="14" height="200" rx="4" fill="#c9a84c"/>
+              <rect x="52" y="30" width="106" height="170" rx="4" fill="#ffffff" opacity="0.08"/>
+            </svg>
+          </div>
+          <div class="dprev-logo-zone" id="logoArea4">
             <img class="dprev-logo-preview" id="logoPrev4" alt="Logo" style="display:none">
-            <span class="dprev-placeholder">Your Logo Here</span>
+            <span class="dprev-placeholder-text">YOUR LOGO</span>
           </div>
         </div>
-        <h4>Notebook</h4>
-        <p>A5 branded journal</p>
+        <h4>Branded Notebook</h4>
+        <p>A5 executive journal</p>
       </div>
+
     </div>
 
-    <!-- CTA -->
     <div class="dprev-cta rv delay-2">
-      <a href="#contact" class="btn btn-gold btn-lg">Get This Designed <i class="fas fa-arrow-right"></i></a>
+      <a href="#contact" class="btn btn-gold btn-lg">Get This Designed &nbsp;<i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
