@@ -94,84 +94,136 @@ select       { -webkit-appearance: none; appearance: none; }
 ::-webkit-scrollbar-thumb { background: var(--navy-400); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-/* ── Announcement Bar ───────────────────────────────────────── */
-.ann-bar {
-  background: linear-gradient(90deg, var(--navy-800) 0%, var(--navy-700) 100%);
-  padding: 12px 0;
-  font-size: 14px;
-  color: var(--text-inv);
+/* ── Promo Popup ───────────────────────────────────────────── */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 13, 26, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease), visibility 0.4s;
+}
+.popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-modal {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  padding: 48px 44px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
   position: relative;
-  z-index: 999;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+  box-shadow: 0 40px 100px rgba(5, 13, 26, 0.35);
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.5s var(--ease);
 }
-
-.ann-bar.hidden {
-  display: none;
+.popup-overlay.show .popup-modal {
+  transform: scale(1) translateY(0);
 }
-
-.ann-bar-inner {
+.popup-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  font-size: 1.3rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-}
-
-.ann-content {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.ann-text {
-  font-size: 14px;
-  color: var(--text-muted-inv);
-}
-
-.ann-cta {
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  white-space: nowrap;
-  transition: color 0.3s ease;
-}
-
-.ann-cta:hover {
-  color: var(--gold-400);
-}
-
-.ann-close {
-  background: none;
-  border: none;
-  color: var(--text-muted-inv);
-  font-size: 20px;
+  justify-content: center;
   cursor: pointer;
-  padding: 0;
-  transition: color 0.3s ease;
+  border: none;
+  transition: var(--t);
+  line-height: 1;
+}
+.popup-close:hover {
+  background: var(--navy-800);
+  color: var(--white);
+}
+.popup-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: linear-gradient(135deg, var(--gold-100), var(--gold-50));
+  border: 1px solid var(--gold-300);
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-700);
+  margin-bottom: 16px;
+}
+.popup-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+.popup-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.popup-title em {
+  font-style: italic;
+  color: var(--gold-600);
+}
+.popup-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-b);
+  margin-bottom: 20px;
+}
+.popup-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  text-align: left;
+  padding: 0 12px;
+}
+.popup-hl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-b);
+}
+.popup-hl i {
+  color: var(--gold-600);
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
-
-.ann-close:hover {
-  color: var(--text-inv);
+.popup-cta {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.popup-note {
+  font-size: 0.76rem;
+  color: var(--text-m);
 }
 
-@media (max-width: 768px) {
-  .ann-bar-inner {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 480px) {
+  .popup-modal {
+    padding: 36px 24px;
   }
-
-  .ann-content {
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-  }
-
-  .ann-text {
-    font-size: 13px;
+  .popup-title {
+    font-size: 1.5rem;
   }
 
   .ann-close {

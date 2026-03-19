@@ -30,15 +30,22 @@
 <body>
 
 <!-- ========================================================
-     ANNOUNCEMENT BAR
+     PROMO POPUP
 ======================================================== -->
-<div class="ann-bar" id="annBar">
-  <div class="wrap ann-bar-inner">
-    <div class="ann-content">
-      <span class="ann-text">🎆 Diwali 2026 Corporate Gifting — Book early for custom branding! Limited slots available.</span>
-      <a href="#contact" class="ann-cta">Enquire Now →</a>
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-modal" id="popupModal">
+    <button class="popup-close" id="popupClose" aria-label="Close popup">&times;</button>
+    <div class="popup-badge">Limited Slots</div>
+    <div class="popup-icon">🎁</div>
+    <h3 class="popup-title">Corporate Gifting<br><em>Season is Here!</em></h3>
+    <p class="popup-desc">Book your Diwali &amp; festive corporate gifts early and get <strong>custom branding</strong> on premium merchandise from 15+ global brands.</p>
+    <div class="popup-highlights">
+      <div class="popup-hl"><i class="fas fa-check-circle"></i> Pan-India delivery</div>
+      <div class="popup-hl"><i class="fas fa-check-circle"></i> 500+ projects delivered</div>
+      <div class="popup-hl"><i class="fas fa-check-circle"></i> Custom branding included</div>
     </div>
-    <button class="ann-close" id="annClose" aria-label="Close announcement">×</button>
+    <a href="#contact" class="btn btn-gold btn-lg popup-cta" id="popupCta">Get a Free Quote &nbsp;<i class="fas fa-arrow-right"></i></a>
+    <p class="popup-note">No obligation — we respond within 24 hours</p>
   </div>
 </div>
 

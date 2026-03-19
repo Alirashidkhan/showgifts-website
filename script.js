@@ -109,21 +109,34 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* ── Announcement Bar ─────────────────────────────────────── */
-const annBar = document.getElementById('annBar');
-const annClose = document.getElementById('annClose');
+/* ── Promo Popup ──────────────────────────────────────────── */
+const popupOverlay = document.getElementById('popupOverlay');
+const popupClose   = document.getElementById('popupClose');
+const popupCta     = document.getElementById('popupCta');
 
-annClose?.addEventListener('click', () => {
-  annBar?.classList.add('hidden');
-  if (header) {
-    header.style.marginTop = '0';
-  }
-  localStorage.setItem('announcementBarHidden', 'true');
+function closePopup() {
+  popupOverlay?.classList.remove('show');
+  document.body.style.overflow = '';
+  localStorage.setItem('promoPopupDismissed', Date.now().toString());
+}
+
+popupClose?.addEventListener('click', closePopup);
+popupOverlay?.addEventListener('click', (e) => {
+  if (e.target === popupOverlay) closePopup();
+});
+popupCta?.addEventListener('click', closePopup);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePopup();
 });
 
-// Restore announcement bar visibility on page load
-if (!localStorage.getItem('announcementBarHidden')) {
-  annBar?.classList.remove('hidden');
+// Show popup after 3 seconds — but only once per 24 hours
+const lastDismissed = localStorage.getItem('promoPopupDismissed');
+const oneDayMs = 24 * 60 * 60 * 1000;
+if (!lastDismissed || (Date.now() - parseInt(lastDismissed)) > oneDayMs) {
+  setTimeout(() => {
+    popupOverlay?.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }, 3000);
 }
 
 /* ── Contact Form ─────────────────────────────────────────── */
