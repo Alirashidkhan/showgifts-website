@@ -1133,92 +1133,81 @@ select       { -webkit-appearance: none; appearance: none; }
 .dprev-browse-link { color: var(--gold-600); font-weight: 700; cursor: pointer; text-decoration: underline; }
 .dprev-upload small { color: var(--text-m); font-size: 0.78rem; opacity: 0.6; }
 
-/* Product Cards — 3D vibrant style */
+/* Product Cards */
 .dprev-products {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-bottom: 48px;
 }
-.dprev-card {
-  text-align: center;
-  transition: transform 0.3s var(--ease);
-}
-.dprev-card:hover { transform: translateY(-6px); }
+.dprev-card { text-align: center; }
+.dprev-card:hover .mock { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(10,22,40,0.18); }
 .dprev-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-h); margin: 14px 0 3px; }
 .dprev-card > p { font-size: 0.82rem; color: var(--text-m); margin: 0; }
 
-/* 3D mockup box — product fills the box */
-.dprev-mockup-box {
+/* Mockup card — product + logo stacked via CSS grid */
+.mock {
   position: relative;
   border-radius: var(--r-lg);
-  aspect-ratio: 1 / 1.15;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(160deg, #f0f4fb 0%, #e8edf8 100%);
-  overflow: visible;
-  transition: transform 0.3s var(--ease);
-}
-.dprev-card:hover .dprev-mockup-box { transform: translateY(-4px); }
-
-/* Full SVG product — fills the box */
-.dprev-full-svg {
-  width: 80%;
-  height: 80%;
-}
-
-/* Logo overlaid ON the product */
-.dprev-logo-on-product {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px dashed rgba(201,168,76,0.45);
-  border-radius: 4px;
+  aspect-ratio: 1 / 1.2;
   overflow: hidden;
-  transition: border-color 0.3s;
+  box-shadow: 0 12px 36px rgba(10,22,40,0.12);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  /* CSS grid stacking: both children occupy same cell */
+  display: grid;
+  place-items: center;
 }
-.dprev-card:hover .dprev-logo-on-product { border-color: var(--gold); }
+.mock > * { grid-area: 1 / 1; }
 
-.dprev-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 4px;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+/* SVG product shape */
+.mock-shape { width: 70%; height: auto; z-index: 1; pointer-events: none; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15)); }
+
+/* Logo zone — sits ON TOP of the product */
+.mock-logo {
+  z-index: 2;
+  width: 40%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed rgba(255,255,255,0.4);
+  border-radius: 6px;
+  background: rgba(0,0,0,0.08);
+  backdrop-filter: blur(1px);
+  transition: border-color 0.3s, background 0.3s;
+  overflow: hidden;
 }
-.dprev-ph {
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
-  text-align: center;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-  pointer-events: none;
+.dprev-card:hover .mock-logo { border-color: var(--gold); background: rgba(0,0,0,0.12); }
+
+/* Uploaded logo image */
+.mock-logo-img { display: none; width: 85%; height: 85%; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
+.mock-logo-img[src] { display: block; }
+.mock-logo-img:not([src]), .mock-logo-img[src=""] { display: none; }
+
+/* Placeholder text */
+.mock-ph {
+  font-size: 0.55rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); text-align: center; line-height: 1.8;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.25); pointer-events: none;
 }
 
 .dprev-cta { text-align: center; }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-}
+@media (max-width: 900px) { .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
 @media (max-width: 640px) {
   .dprev-upload { padding: 32px 20px; }
   .dprev-upload h3 { font-size: 1rem; }
   .dprev-upload-ico { width: 48px; height: 48px; font-size: 1.2rem; }
   .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .dprev-card h4 { font-size: 0.88rem; }
+  .mock-ph { font-size: 0.48rem; letter-spacing: 1.5px; }
 }
 @media (max-width: 420px) {
   .dprev-upload { padding: 28px 16px; }
-  .dprev-upload h3 { font-size: 0.95rem; }
   .dprev-products { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .dprev-mockup-box { aspect-ratio: 1 / 1.05; }
-  .dprev-placeholder-text { font-size: 0.5rem; letter-spacing: 1px; }
+  .mock { aspect-ratio: 1 / 1.1; }
+  .mock-ph { font-size: 0.42rem; }
 }
 
 /* ================================================================
