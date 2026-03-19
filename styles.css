@@ -672,17 +672,17 @@ select       { -webkit-appearance: none; appearance: none; }
 
 /* Brand Logo images */
 .brand-logo {
-  max-width: 110px;
-  max-height: 40px;
+  max-width: 120px;
+  max-height: 45px;
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(0.3) opacity(0.75);
-  transition: filter var(--t), transform var(--t);
+  opacity: 0.82;
+  transition: opacity var(--t), transform var(--t);
 }
 .brand-tile:hover .brand-logo,
 .client-tile:hover .brand-logo {
-  filter: grayscale(0) opacity(1);
+  opacity: 1;
   transform: scale(1.08);
 }
 
