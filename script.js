@@ -200,148 +200,22 @@ cform?.querySelectorAll('input, textarea, select').forEach(inp => {
   });
 });
 
-/* ── Design Preview — Logo Upload & Studio ──────────────── */
-const dPrevUpload = document.getElementById('dPrevUpload');
-const dPrevInput = document.getElementById('dPrevInput');
-const studioModal = document.getElementById('studioModal');
-const studioClose = document.getElementById('studioClose');
-const studioCanvas = document.getElementById('studioCanvas');
-const studioProductImg = document.getElementById('studioProductImg');
-const studioLogoWrapper = document.getElementById('studioLogoWrapper');
-const studioLogoImg = document.getElementById('studioLogoImg');
-const logoSizeSlider = document.getElementById('logoSizeSlider');
-const logoOpacitySlider = document.getElementById('logoOpacitySlider');
-const studioHint = document.getElementById('studioHint');
-
-// Upload handlers
-dPrevUpload?.addEventListener('click', () => dPrevInput?.click());
-document.querySelector('.dprev-browse-link')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  dPrevInput?.click();
-});
-
-dPrevInput?.addEventListener('change', (e) => {
-  const file = e.target.files?.[0];
-  if (!file) return;
-  if (file.size > 5 * 1024 * 1024) { alert('File size must be less than 5MB'); return; }
-
-  const reader = new FileReader();
-  reader.onload = (ev) => {
-    if (studioLogoImg) studioLogoImg.src = ev.target.result;
-    openStudio();
-  };
-  reader.readAsDataURL(file);
-});
-
-// Drag and drop on upload area
-dPrevUpload?.addEventListener('dragover', (e) => { e.preventDefault(); dPrevUpload.style.borderColor = 'var(--gold)'; dPrevUpload.style.background = 'rgba(201,168,76,0.08)'; });
-dPrevUpload?.addEventListener('dragleave', (e) => { e.preventDefault(); dPrevUpload.style.borderColor = ''; dPrevUpload.style.background = ''; });
-dPrevUpload?.addEventListener('drop', (e) => {
-  e.preventDefault();
-  dPrevUpload.style.borderColor = ''; dPrevUpload.style.background = '';
-  if (e.dataTransfer?.files?.length) { dPrevInput.files = e.dataTransfer.files; dPrevInput.dispatchEvent(new Event('change', { bubbles: true })); }
-});
-
-// Open/close studio
-function openStudio() {
-  studioModal?.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeStudio() {
-  studioModal?.classList.remove('show');
-  document.body.style.overflow = '';
-}
-studioClose?.addEventListener('click', closeStudio);
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && studioModal?.classList.contains('show')) closeStudio();
-});
-
-// Product switcher
-document.querySelectorAll('.studio-prod-btn').forEach(btn => {
+/* ── FAQ Accordion ────────────────────────────────────────── */
+document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.studio-prod-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (studioProductImg) studioProductImg.src = btn.dataset.img;
-    // Reset logo position for new product
-    if (studioLogoWrapper) {
-      studioLogoWrapper.style.top = '30%';
-      studioLogoWrapper.style.left = '50%';
-      studioLogoWrapper.style.transform = 'translate(-50%, -50%)';
-    }
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all other items
+    document.querySelectorAll('.faq-item.open').forEach(openItem => {
+      if (openItem !== item) openItem.classList.remove('open');
+    });
+
+    // Toggle current
+    item.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', !isOpen);
   });
 });
-
-// Size slider
-logoSizeSlider?.addEventListener('input', () => {
-  if (studioLogoWrapper) studioLogoWrapper.style.width = logoSizeSlider.value + '%';
-});
-
-// Opacity slider
-logoOpacitySlider?.addEventListener('input', () => {
-  if (studioLogoImg) studioLogoImg.style.opacity = logoOpacitySlider.value / 100;
-});
-
-// Blend mode toggle
-const blendToggle = document.getElementById('blendToggle');
-blendToggle?.addEventListener('change', () => {
-  if (studioCanvas) {
-    studioCanvas.classList.toggle('blend-mode', blendToggle.checked);
-  }
-});
-
-// DRAG FUNCTIONALITY (mouse + touch)
-let isDragging = false;
-let dragStartX, dragStartY, logoStartX, logoStartY;
-
-function getPos(e) {
-  if (e.touches) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-  return { x: e.clientX, y: e.clientY };
-}
-
-function startDrag(e) {
-  if (!studioCanvas || !studioLogoWrapper) return;
-  isDragging = true;
-  studioLogoWrapper.classList.add('dragging');
-  const pos = getPos(e);
-  const rect = studioLogoWrapper.getBoundingClientRect();
-  dragStartX = pos.x - rect.left;
-  dragStartY = pos.y - rect.top;
-  // Remove the translate(-50%,-50%) on first drag so positioning is absolute
-  studioLogoWrapper.style.transform = 'none';
-  studioLogoWrapper.style.left = rect.left - studioCanvas.getBoundingClientRect().left + 'px';
-  studioLogoWrapper.style.top = rect.top - studioCanvas.getBoundingClientRect().top + 'px';
-  e.preventDefault();
-  // Hide hint
-  if (studioHint) { studioHint.classList.add('hidden'); }
-}
-
-function moveDrag(e) {
-  if (!isDragging || !studioCanvas || !studioLogoWrapper) return;
-  e.preventDefault();
-  const pos = getPos(e);
-  const canvasRect = studioCanvas.getBoundingClientRect();
-  let newX = pos.x - canvasRect.left - dragStartX;
-  let newY = pos.y - canvasRect.top - dragStartY;
-  // Clamp within canvas
-  const logoW = studioLogoWrapper.offsetWidth;
-  const logoH = studioLogoWrapper.offsetHeight;
-  newX = Math.max(0, Math.min(newX, canvasRect.width - logoW));
-  newY = Math.max(0, Math.min(newY, canvasRect.height - logoH));
-  studioLogoWrapper.style.left = newX + 'px';
-  studioLogoWrapper.style.top = newY + 'px';
-}
-
-function endDrag() {
-  isDragging = false;
-  studioLogoWrapper?.classList.remove('dragging');
-}
-
-studioLogoWrapper?.addEventListener('mousedown', startDrag);
-document.addEventListener('mousemove', moveDrag);
-document.addEventListener('mouseup', endDrag);
-studioLogoWrapper?.addEventListener('touchstart', startDrag, { passive: false });
-document.addEventListener('touchmove', moveDrag, { passive: false });
-document.addEventListener('touchend', endDrag);
 
 /* ── Hero parallax ────────────────────────────────────────── */
 const heroImg = document.querySelector('.hero-img');

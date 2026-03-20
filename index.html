@@ -69,7 +69,7 @@
       <a href="#brands"         class="na">Brands</a>
       <a href="#services"       class="na">Services</a>
       <a href="#collections"    class="na">Collections</a>
-      <a href="#design-preview" class="na">Design Preview</a>
+      <a href="#process"        class="na">How It Works</a>
       <a href="#clients"        class="na">Clients</a>
       <a href="#contact"        class="na">Contact</a>
     </nav>
@@ -104,7 +104,7 @@
       <a href="#brands"         class="mna">Our Brands</a>
       <a href="#services"       class="mna">Services</a>
       <a href="#collections"    class="mna">Collections</a>
-      <a href="#design-preview" class="mna">Design Preview</a>
+      <a href="#process"        class="mna">How It Works</a>
       <a href="#clients"        class="mna">Clients</a>
       <a href="#contact"        class="mna">Contact</a>
     </nav>
@@ -492,112 +492,133 @@
 </section>
 
 
+
+
 <!-- ========================================================
-     DESIGN PREVIEW — TRY YOUR BRAND
+     HOW IT WORKS — 4-STEP PROCESS
 ======================================================== -->
-<section id="design-preview" class="section section-light">
+<section id="process" class="section section-light">
   <div class="wrap">
     <div class="sec-hd rv">
-      <span class="eyebrow">Design Preview</span>
-      <h2 class="sec-h2">See Your Brand on<br><em>Premium Merchandise</em></h2>
-      <p class="sec-p">Upload your company logo and instantly preview how it looks on our best-selling products.</p>
+      <span class="eyebrow">How It Works</span>
+      <h2 class="sec-h2">From Idea to Delivery<br><em>in 4 Simple Steps</em></h2>
+      <p class="sec-p">Getting custom-branded merchandise has never been easier. Here's how we make it happen.</p>
     </div>
 
-    <!-- Logo Upload Area -->
-    <div class="dprev-upload-wrapper rv">
-      <div class="dprev-upload" id="dPrevUpload">
-        <div class="dprev-upload-content">
-          <div class="dprev-upload-ico"><i class="fas fa-cloud-upload-alt"></i></div>
-          <h3>Drag your logo here</h3>
-          <p>or <span class="dprev-browse-link">click to browse</span></p>
-          <small>PNG, JPG, SVG up to 5MB &middot; Transparent or white background works best</small>
-        </div>
-        <input type="file" id="dPrevInput" accept="image/*" hidden>
+    <div class="process-steps">
+      <div class="process-step rv">
+        <div class="process-step-num">1</div>
+        <div class="process-step-icon"><i class="fas fa-comments"></i></div>
+        <h3>Tell Us What You Need</h3>
+        <p>Share your requirements &mdash; occasion, quantity, budget, and any branding preferences. We'll guide you to the perfect products.</p>
+      </div>
+      <div class="process-connector rv"><i class="fas fa-chevron-right"></i></div>
+
+      <div class="process-step rv delay-1">
+        <div class="process-step-num">2</div>
+        <div class="process-step-icon"><i class="fas fa-paint-brush"></i></div>
+        <h3>We Design a Mockup</h3>
+        <p>Our design team creates a detailed mockup of your logo on the selected products. You review and request changes &mdash; no limits.</p>
+      </div>
+      <div class="process-connector rv delay-1"><i class="fas fa-chevron-right"></i></div>
+
+      <div class="process-step rv delay-2">
+        <div class="process-step-num">3</div>
+        <div class="process-step-icon"><i class="fas fa-check-circle"></i></div>
+        <h3>Approve &amp; Confirm</h3>
+        <p>Once you're happy with the design, confirm your order. We handle production with premium quality checks at every stage.</p>
+      </div>
+      <div class="process-connector rv delay-2"><i class="fas fa-chevron-right"></i></div>
+
+      <div class="process-step rv delay-3">
+        <div class="process-step-num">4</div>
+        <div class="process-step-icon"><i class="fas fa-truck"></i></div>
+        <h3>Delivered to Your Door</h3>
+        <p>We deliver pan-India with careful packaging. Bulk orders, individual kits, or drop-shipping &mdash; we do it all.</p>
       </div>
     </div>
 
-    <div class="dprev-cta rv delay-2">
-      <a href="#contact" class="btn btn-gold btn-lg">Get This Designed &nbsp;<i class="fas fa-arrow-right"></i></a>
+    <div class="process-cta rv delay-3" style="text-align:center; margin-top:48px;">
+      <a href="#contact" class="btn btn-gold btn-lg">Start Your Order &nbsp;<i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
 
-<!-- DESIGN STUDIO MODAL -->
-<div id="studioModal" class="studio-modal">
-  <div class="studio-content">
 
-    <!-- Top bar -->
-    <div class="studio-topbar">
-      <div class="studio-title">
-        <i class="fas fa-paint-brush"></i>
-        <span>Design Studio</span>
-      </div>
-      <button class="studio-close" id="studioClose"><i class="fas fa-times"></i></button>
+<!-- ========================================================
+     FAQ
+======================================================== -->
+<section id="faq" class="section section-dark">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="sec-h2">Frequently Asked<br><em>Questions</em></h2>
+      <p class="sec-p">Everything you need to know about ordering custom branded merchandise.</p>
     </div>
 
-    <!-- Main area: sidebar + canvas -->
-    <div class="studio-main">
-
-      <!-- Left sidebar: product selector -->
-      <div class="studio-sidebar">
-        <h4>Select Product</h4>
-        <div class="studio-products">
-          <button class="studio-prod-btn active" data-product="tshirt" data-img="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80">
-            <i class="fas fa-tshirt"></i> T-Shirt
-          </button>
-          <button class="studio-prod-btn" data-product="mug" data-img="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80">
-            <i class="fas fa-mug-hot"></i> Coffee Mug
-          </button>
-          <button class="studio-prod-btn" data-product="bag" data-img="https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80">
-            <i class="fas fa-shopping-bag"></i> Tote Bag
-          </button>
-          <button class="studio-prod-btn" data-product="notebook" data-img="https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80">
-            <i class="fas fa-book"></i> Notebook
-          </button>
-        </div>
-
-        <div class="studio-controls">
-          <h4>Logo Size</h4>
-          <input type="range" id="logoSizeSlider" min="10" max="80" value="30" class="studio-slider">
-          <div class="studio-size-labels">
-            <span>Small</span><span>Large</span>
-          </div>
-        </div>
-
-        <div class="studio-controls">
-          <h4>Opacity</h4>
-          <input type="range" id="logoOpacitySlider" min="30" max="100" value="90" class="studio-slider">
-        </div>
-
-        <div class="studio-controls">
-          <label class="studio-toggle">
-            <input type="checkbox" id="blendToggle">
-            <span class="studio-toggle-label">Blend into product</span>
-            <small class="studio-toggle-hint">Best for logos with white background</small>
-          </label>
-        </div>
-
-        <button class="btn btn-gold btn-block studio-quote-btn" onclick="document.getElementById('studioClose').click(); document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">
-          Get a Free Quote <i class="fas fa-arrow-right"></i>
+    <div class="faq-list rv">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What is the minimum order quantity (MOQ)?</span>
+          <i class="fas fa-plus faq-icon"></i>
         </button>
-      </div>
-
-      <!-- Center canvas -->
-      <div class="studio-canvas-area">
-        <div class="studio-canvas" id="studioCanvas">
-          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80" alt="Product" class="studio-product-img" id="studioProductImg">
-          <div class="studio-logo-wrapper" id="studioLogoWrapper">
-            <img id="studioLogoImg" class="studio-logo-img" alt="Your Logo" draggable="false">
-          </div>
-          <div class="studio-hint" id="studioHint">
-            <i class="fas fa-arrows-alt"></i> Drag to position &middot; Use slider to resize
-          </div>
+        <div class="faq-answer">
+          <p>MOQ varies by product type. Most items start at 50 units, while premium products like leather goods may start at 25. We're flexible &mdash; get in touch and we'll work with your budget.</p>
         </div>
       </div>
 
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>How long does delivery take?</span>
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Standard orders are delivered within 7&ndash;10 business days after design approval. Rush orders (3&ndash;5 days) are available for select products at a small surcharge.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What branding methods do you offer?</span>
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>We offer screen printing, embroidery, laser engraving, UV printing, sublimation, debossing, and foil stamping. Our team will recommend the best method based on your product and design.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Can I see a sample before placing a bulk order?</span>
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. We provide physical samples for a nominal fee (often adjusted against your final order). You'll also receive digital mockups before any production begins.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Do you deliver outside Bangalore?</span>
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We deliver pan-India. Whether it's a single location or multiple offices across the country, we handle logistics and can even do individual kit shipments to employee addresses.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What file format should my logo be in?</span>
+          <i class="fas fa-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Vector formats (AI, EPS, SVG) are ideal for the best print quality. High-resolution PNG files (300 DPI+) also work well. Don't worry if you're unsure &mdash; our design team can help clean up your artwork.</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 
 <!-- ========================================================
