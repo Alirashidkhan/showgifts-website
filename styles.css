@@ -1530,6 +1530,10 @@ select       { -webkit-appearance: none; appearance: none; }
 /* ================================================================
    FAQ — ACCORDION
 ================================================================ */
+.section-dark {
+  background: #1e2a45;
+  color: #fff;
+}
 .faq-list {
   max-width: 780px;
   margin: 0 auto;
