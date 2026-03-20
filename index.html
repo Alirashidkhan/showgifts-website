@@ -69,6 +69,7 @@
       <a href="#brands"         class="na">Brands</a>
       <a href="#services"       class="na">Services</a>
       <a href="#collections"    class="na">Collections</a>
+      <a href="#design-preview" class="na">Design Preview</a>
       <a href="#process"        class="na">How It Works</a>
       <a href="#clients"        class="na">Clients</a>
       <a href="#contact"        class="na">Contact</a>
@@ -104,6 +105,7 @@
       <a href="#brands"         class="mna">Our Brands</a>
       <a href="#services"       class="mna">Services</a>
       <a href="#collections"    class="mna">Collections</a>
+      <a href="#design-preview" class="mna">Design Preview</a>
       <a href="#process"        class="mna">How It Works</a>
       <a href="#clients"        class="mna">Clients</a>
       <a href="#contact"        class="mna">Contact</a>
@@ -495,54 +497,136 @@
 
 
 <!-- ========================================================
-     HOW IT WORKS — 4-STEP PROCESS
+     DESIGN PREVIEW — TRY YOUR BRAND
 ======================================================== -->
-<section id="process" class="section section-light">
+<section id="design-preview" class="section section-light">
   <div class="wrap">
     <div class="sec-hd rv">
-      <span class="eyebrow">How It Works</span>
-      <h2 class="sec-h2">From Idea to Delivery<br><em>in 4 Simple Steps</em></h2>
-      <p class="sec-p">Getting custom-branded merchandise has never been easier. Here's how we make it happen.</p>
+      <span class="eyebrow">Design Preview</span>
+      <h2 class="sec-h2">See Your Brand on<br><em>Premium Merchandise</em></h2>
+      <p class="sec-p">Upload your company logo and instantly preview how it looks on our best-selling products.</p>
     </div>
 
-    <div class="process-steps">
-      <div class="process-step rv">
-        <div class="process-step-num">1</div>
-        <div class="process-step-icon"><i class="fas fa-comments"></i></div>
-        <h3>Tell Us What You Need</h3>
-        <p>Share your requirements &mdash; occasion, quantity, budget, and any branding preferences. We'll guide you to the perfect products.</p>
-      </div>
-      <div class="process-connector rv"><i class="fas fa-chevron-right"></i></div>
-
-      <div class="process-step rv delay-1">
-        <div class="process-step-num">2</div>
-        <div class="process-step-icon"><i class="fas fa-paint-brush"></i></div>
-        <h3>We Design a Mockup</h3>
-        <p>Our design team creates a detailed mockup of your logo on the selected products. You review and request changes &mdash; no limits.</p>
-      </div>
-      <div class="process-connector rv delay-1"><i class="fas fa-chevron-right"></i></div>
-
-      <div class="process-step rv delay-2">
-        <div class="process-step-num">3</div>
-        <div class="process-step-icon"><i class="fas fa-check-circle"></i></div>
-        <h3>Approve &amp; Confirm</h3>
-        <p>Once you're happy with the design, confirm your order. We handle production with premium quality checks at every stage.</p>
-      </div>
-      <div class="process-connector rv delay-2"><i class="fas fa-chevron-right"></i></div>
-
-      <div class="process-step rv delay-3">
-        <div class="process-step-num">4</div>
-        <div class="process-step-icon"><i class="fas fa-truck"></i></div>
-        <h3>Delivered to Your Door</h3>
-        <p>We deliver pan-India with careful packaging. Bulk orders, individual kits, or drop-shipping &mdash; we do it all.</p>
-      </div>
+    <!-- Logo Upload Area -->
+    <div class="dprev-upload-wrapper rv">
+      <label class="dprev-upload" id="dPrevUpload" for="dPrevInput" tabindex="0" role="button" aria-label="Upload your company logo">
+        <div class="dprev-upload-content" id="dPrevUploadContent">
+          <div class="dprev-upload-ico"><i class="fas fa-cloud-upload-alt"></i></div>
+          <h3>Drag your logo here</h3>
+          <p>or <span class="dprev-browse-link">click to browse</span></p>
+          <small>PNG, JPG, SVG up to 5MB &middot; Transparent or white background works best</small>
+        </div>
+        <div class="dprev-upload-preview" id="dPrevPreview" style="display:none;">
+          <img id="dPrevThumb" alt="Uploaded logo preview">
+          <div class="dprev-preview-info">
+            <span class="dprev-filename" id="dPrevFilename"></span>
+            <span class="dprev-filesize" id="dPrevFilesize"></span>
+          </div>
+          <button type="button" class="dprev-remove" id="dPrevRemove" aria-label="Remove logo"><i class="fas fa-times"></i></button>
+        </div>
+      </label>
+      <input type="file" id="dPrevInput" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="dprev-input-hidden">
     </div>
 
-    <div class="process-cta rv delay-3" style="text-align:center; margin-top:48px;">
-      <a href="#contact" class="btn btn-gold btn-lg">Start Your Order &nbsp;<i class="fas fa-arrow-right"></i></a>
+    <div class="dprev-cta rv delay-2">
+      <a href="#contact" class="btn btn-gold btn-lg">Get This Designed &nbsp;<i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
+
+<!-- DESIGN STUDIO MODAL -->
+<div id="studioModal" class="studio-modal">
+  <div class="studio-content">
+
+    <!-- Top bar -->
+    <div class="studio-topbar">
+      <div class="studio-title">
+        <i class="fas fa-paint-brush"></i>
+        <span>Design Studio</span>
+      </div>
+      <button class="studio-close" id="studioClose"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Main area: sidebar + canvas -->
+    <div class="studio-main">
+
+      <!-- Left sidebar -->
+      <div class="studio-sidebar">
+        <h4>Select Product</h4>
+        <div class="studio-products">
+          <button class="studio-prod-btn active" data-product="tshirt">
+            <i class="fas fa-tshirt"></i> T-Shirt
+          </button>
+          <button class="studio-prod-btn" data-product="mug">
+            <i class="fas fa-mug-hot"></i> Coffee Mug
+          </button>
+          <button class="studio-prod-btn" data-product="bag">
+            <i class="fas fa-shopping-bag"></i> Tote Bag
+          </button>
+          <button class="studio-prod-btn" data-product="cap">
+            <i class="fas fa-hat-cowboy"></i> Cap
+          </button>
+        </div>
+
+        <div class="studio-controls">
+          <h4>Logo Size</h4>
+          <input type="range" id="logoSizeSlider" min="20" max="95" value="50" class="studio-slider">
+          <div class="studio-size-labels"><span>Small</span><span>Large</span></div>
+        </div>
+
+        <div class="studio-controls">
+          <h4>Rotation</h4>
+          <input type="range" id="logoRotateSlider" min="-180" max="180" value="0" class="studio-slider">
+          <div class="studio-size-labels"><span>-180&deg;</span><span id="rotateVal">0&deg;</span><span>180&deg;</span></div>
+        </div>
+
+        <div class="studio-controls">
+          <h4>Opacity</h4>
+          <input type="range" id="logoOpacitySlider" min="20" max="100" value="95" class="studio-slider">
+        </div>
+
+        <div class="studio-controls">
+          <label class="studio-toggle">
+            <input type="checkbox" id="blendToggle">
+            <span class="studio-toggle-label">Blend into product</span>
+            <small class="studio-toggle-hint">Removes white background from logo</small>
+          </label>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="studio-actions">
+          <button class="studio-action-btn" id="studioCenter" title="Center logo in print area">
+            <i class="fas fa-crosshairs"></i> Center
+          </button>
+          <button class="studio-action-btn" id="studioResetRotation" title="Reset rotation to 0&deg;">
+            <i class="fas fa-undo"></i> Reset
+          </button>
+        </div>
+
+        <button class="btn btn-gold btn-block studio-quote-btn" onclick="document.getElementById('studioClose').click(); document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">
+          Get a Free Quote <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Center canvas -->
+      <div class="studio-canvas-area">
+        <div class="studio-canvas" id="studioCanvas">
+          <div class="studio-product-bg" id="studioProductBg"></div>
+          <div class="studio-print-zone" id="studioPrintZone">
+            <span class="studio-print-zone-label">Print Area</span>
+          </div>
+          <div class="studio-logo-wrapper" id="studioLogoWrapper">
+            <img id="studioLogoImg" class="studio-logo-img" alt="Your Logo" draggable="false">
+          </div>
+        </div>
+        <div class="studio-hint" id="studioHint">
+          <i class="fas fa-arrows-alt"></i> Drag logo to reposition &middot; Use sliders to resize &amp; rotate
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 <!-- ========================================================
