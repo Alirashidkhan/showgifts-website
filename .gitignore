@@ -1,0 +1,16 @@
+.DS_Store
+.claude/
+server.py
+styles 2.css
+
+# Exclude all extracted product images except the ones used on the site
+assets/products/*
+!assets/products/ms_p2_Im39.jpg
+!assets/products/eo_p18_Im0.jpg
+!assets/products/eo_p21_Im0.jpg
+!assets/products/eo_p15_Im10.jpg
+!assets/products/eo_p4_Im7.jpg
+!assets/products/xech_p25_Im0.jpg
+!assets/products/xech_p43_Im0.jpg
+!assets/products/xech_p5_Im0.jpg
+!assets/products/urban_p15_X8_X7.jpg
