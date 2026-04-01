@@ -1099,7 +1099,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 768px) {
   .hd-nav, .hd-phone, .hd-actions .btn-primary { display: none; }
   .burger { display: flex; }
-  .hd-inner { gap: 12px; }
+  .hd-inner { gap: 12px; justify-content: space-between; }
   .section { padding: 60px 0; }
   .sec-head h2 { font-size: 1.75rem; }
   .cat-grid, .catalog-grid { grid-template-columns: 1fr; }
