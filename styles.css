@@ -1119,6 +1119,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 480px) {
   .brand-grid { grid-template-columns: repeat(3, 1fr); }
   .hero-h1    { font-size: 1.75rem; }
-  .hero-trust { gap: 12px; }
-  .ht-div     { height: 24px; }
+  .hero-trust { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ht-div     { display: none; }
+  .ht-item    { align-items: flex-start; }
+  .ht-item strong { font-size: 1.2rem; }
+  .catalog-card { display: flex; flex-direction: column; }
+  .catalog-cover { height: 180px; }
+  .about-stats { gap: 20px; }
 }
