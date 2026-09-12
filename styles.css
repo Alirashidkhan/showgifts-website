@@ -275,7 +275,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cat-nav a {
   display: flex; align-items: center; gap: 6px;
   color: var(--muted); font-size: .8rem; font-weight: 600;
-  padding: 6px 14px; border-radius: 24px; transition: all var(--trans);
+  padding: 6px 12px; border-radius: 24px; transition: all var(--trans);
   white-space: nowrap; flex-shrink: 0;
 }
 .cat-nav a:hover { color: var(--navy); background: var(--light); }
