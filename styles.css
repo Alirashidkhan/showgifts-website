@@ -14,7 +14,6 @@ body {
   background: #fff;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
   max-width: 100vw;
 }
 
@@ -205,9 +204,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   z-index: 900;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  transition: box-shadow var(--trans);
+  transition: box-shadow var(--trans), background-color var(--trans);
 }
-.header.scrolled { box-shadow: 0 2px 20px rgba(15,32,64,.1); }
+.header.scrolled {
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px rgba(15,32,64,.12);
+}
 
 .hd-inner {
   max-width: 1200px;
@@ -242,7 +246,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .logo-name { font-size: 1rem; font-weight: 800; color: var(--navy); }
 .logo-sub  { font-size: .65rem; font-weight: 500; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
-.logo-img  { height: 44px; width: auto; display: block; }
+.logo-icon { height: 42px; width: auto; display: block; }
 
 /* ── UTILITY BAR ──────────────────────────────────────────── */
 .util-bar { background: #f0f2f5; border-bottom: 1px solid var(--border); }
