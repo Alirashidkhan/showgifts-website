@@ -59,6 +59,11 @@ sections.forEach(s => navObserver.observe(s));
 
 
 /* ── Scroll reveal ────────────────────────────────────────── */
+// threshold: 0 fires as soon as a single pixel of the target is visible.
+// A percentage threshold (e.g. 0.1) can never be satisfied by a container
+// taller than ~10x the viewport — on mobile the catalog grid (21 stacked
+// cards, ~10,000px tall) is far taller than that, so a 0.1 threshold left
+// it permanently stuck at opacity:0 no matter how far you scrolled.
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -66,7 +71,7 @@ const revealObserver = new IntersectionObserver(entries => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
 
