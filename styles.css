@@ -284,10 +284,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cat-nav a i { font-size: .75rem; }
 .cat-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; margin: 0 4px; }
 
-@media (max-width: 768px) {
-  .util-bar, .cat-nav { display: none; }
-}
-
 /* Nav */
 .hd-nav {
   display: flex;
@@ -1141,10 +1137,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .testi-grid   { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
 }
 
-@media (max-width: 768px) {
+/* Header nav collapses to the hamburger menu earlier than the rest of
+   the layout — the logo + full nav + phone + WhatsApp + quote button
+   don't all fit between 769px and ~1080px, causing horizontal overflow
+   on common tablet/small-laptop widths (iPad landscape at 1024px, etc). */
+@media (max-width: 1120px) {
   .hd-nav, .hd-phone, .hd-actions .btn-primary { display: none; }
   .burger { display: flex; }
   .hd-inner { gap: 12px; justify-content: space-between; }
+  .util-bar, .cat-nav { display: none; }
+}
+
+@media (max-width: 768px) {
   .section { padding: 60px 0; }
   .sec-head h2 { font-size: 1.75rem; }
   .cat-grid, .catalog-grid { grid-template-columns: 1fr; }
