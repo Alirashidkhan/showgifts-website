@@ -145,8 +145,13 @@ cform?.addEventListener('submit', async e => {
     fSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i>&nbsp; Sending…';
   }
 
-  // Google Apps Script endpoint (update URL in production)
+  // Google Apps Script endpoint — see google-apps-script.js for setup steps.
+  // ⚠️ STILL A PLACEHOLDER: replace with your real deployment URL or every
+  // enquiry submitted through this form is silently lost.
   const scriptUrl = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+  if (scriptUrl.includes('YOUR_SCRIPT_ID')) {
+    console.warn('[ShowGifts] Contact form endpoint is still a placeholder — submissions are NOT being saved anywhere. See google-apps-script.js for setup steps.');
+  }
 
   const payload = {
     name,

@@ -280,7 +280,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cat-nav a i { font-size: .75rem; }
 .cat-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; margin: 0 4px; }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .util-bar, .cat-nav { display: none; }
 }
 

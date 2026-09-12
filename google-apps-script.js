@@ -48,8 +48,18 @@ const SHEET_NAME = 'Form Submissions'; // Sheet tab name
 // =========== MAIN HANDLER ===========
 function doPost(e) {
   try {
-    // Get form data from the request
-    const params = e.parameter;
+    // The frontend (script.js) sends the payload as a raw JSON body
+    // (fetch with Content-Type: application/json), not as URL-encoded
+    // form fields — so it arrives in e.postData.contents, not e.parameter.
+    // Fall back to e.parameter for safety in case that ever changes.
+    let params = e.parameter;
+    if (e.postData && e.postData.type === 'application/json' && e.postData.contents) {
+      try {
+        params = JSON.parse(e.postData.contents);
+      } catch (parseErr) {
+        params = e.parameter;
+      }
+    }
 
     // Prepare row data
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
