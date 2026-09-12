@@ -124,7 +124,9 @@ const cform  = document.getElementById('cform');
 const formOk = document.getElementById('formOk');
 const fSubmit = document.getElementById('fSubmit');
 
-cform?.addEventListener('submit', async e => {
+const WHATSAPP_NUMBER = '918867193377'; // Show Gifts business WhatsApp
+
+cform?.addEventListener('submit', e => {
   e.preventDefault();
 
   const name  = document.getElementById('f-name')?.value.trim();
@@ -140,40 +142,55 @@ cform?.addEventListener('submit', async e => {
     return;
   }
 
+  const company = document.getElementById('f-company')?.value.trim() || '';
+  const phone   = document.getElementById('f-phone')?.value.trim() || '';
+  const service = document.getElementById('f-service')?.value || '';
+  const message = document.getElementById('f-msg')?.value.trim() || '';
+
+  // Build a readable WhatsApp message from the form fields.
+  const lines = ['New enquiry from the Show Gifts website:', '', `*Name:* ${name}`];
+  if (company) lines.push(`*Company:* ${company}`);
+  lines.push(`*Email:* ${email}`);
+  if (phone)   lines.push(`*Phone:* ${phone}`);
+  if (service) lines.push(`*Requirement:* ${service}`);
+  if (message) lines.push(`*Message:* ${message}`);
+
+  const waText = encodeURIComponent(lines.join('\n'));
+  const waUrl  = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+
+  // window.open must run synchronously inside the click handler (no
+  // await before it) or browsers block it as an unrequested popup.
+  const waWindow = window.open(waUrl, '_blank', 'noopener');
+
+  // Point the "didn't open?" fallback link at the same pre-filled message,
+  // in case the popup was blocked.
+  const waFallback = document.getElementById('waFallback');
+  if (waFallback) waFallback.href = waUrl;
+
   if (fSubmit) {
     fSubmit.disabled = true;
-    fSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i>&nbsp; Sending…';
+    fSubmit.innerHTML = '<i class="fab fa-whatsapp"></i>&nbsp; Opening WhatsApp…';
   }
 
-  // Google Apps Script endpoint — see google-apps-script.js for setup steps.
-  // ⚠️ STILL A PLACEHOLDER: replace with your real deployment URL or every
-  // enquiry submitted through this form is silently lost.
+  // Best-effort background copy to Google Sheets too, if configured —
+  // see google-apps-script.js for setup steps. WhatsApp above is the
+  // primary, guaranteed-working delivery path; this is a bonus record.
   const scriptUrl = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
-  if (scriptUrl.includes('YOUR_SCRIPT_ID')) {
-    console.warn('[ShowGifts] Contact form endpoint is still a placeholder — submissions are NOT being saved anywhere. See google-apps-script.js for setup steps.');
-  }
-
-  const payload = {
-    name,
-    company:  document.getElementById('f-company')?.value.trim() || '',
-    email,
-    phone:    document.getElementById('f-phone')?.value.trim() || '',
-    service:  document.getElementById('f-service')?.value || '',
-    message:  document.getElementById('f-msg')?.value.trim() || '',
-  };
-
-  try {
-    await fetch(scriptUrl, {
+  if (!scriptUrl.includes('YOUR_SCRIPT_ID')) {
+    fetch(scriptUrl, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-  } catch (_) { /* no-cors — always throws, ignore */ }
+      body: JSON.stringify({ name, company, email, phone, service, message }),
+    }).catch(() => {});
+  }
 
-  // Show success regardless (no-cors gives opaque response)
   cform.style.display = 'none';
   if (formOk) formOk.style.display = 'block';
+
+  if (!waWindow || waWindow.closed) {
+    console.warn('[ShowGifts] WhatsApp popup may have been blocked — the fallback link in the success message still works.');
+  }
 });
 
 // Clear field error on input
