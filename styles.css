@@ -242,6 +242,47 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .logo-name { font-size: 1rem; font-weight: 800; color: var(--navy); }
 .logo-sub  { font-size: .65rem; font-weight: 500; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+.logo-img  { height: 44px; width: auto; display: block; }
+
+/* ── UTILITY BAR ──────────────────────────────────────────── */
+.util-bar { background: #f0f2f5; border-bottom: 1px solid var(--border); }
+.util-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  height: 36px; display: flex; justify-content: space-between; align-items: center;
+}
+.util-left, .util-right { display: flex; align-items: center; gap: 20px; }
+.util-bar a { color: var(--muted); font-size: .73rem; font-weight: 500; transition: color var(--trans); display: flex; align-items: center; gap: 5px; }
+.util-bar a:hover { color: var(--navy); }
+.util-bar a i { color: var(--gold); font-size: .68rem; }
+.util-sep { width: 1px; height: 14px; background: var(--border); }
+
+/* ── CATEGORY NAV ─────────────────────────────────────────── */
+.cat-nav {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  position: sticky; top: 68px; z-index: 890;
+  box-shadow: 0 1px 8px rgba(0,0,0,.04);
+}
+.cat-nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; height: 48px; gap: 2px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.cat-nav-inner::-webkit-scrollbar { display: none; }
+.cat-nav a {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--muted); font-size: .8rem; font-weight: 600;
+  padding: 6px 14px; border-radius: 24px; transition: all var(--trans);
+  white-space: nowrap; flex-shrink: 0;
+}
+.cat-nav a:hover { color: var(--navy); background: var(--light); }
+.cat-nav a.active { color: var(--navy); background: rgba(15,32,64,.07); font-weight: 700; }
+.cat-nav a.highlight { color: var(--gold); }
+.cat-nav a i { font-size: .75rem; }
+.cat-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; margin: 0 4px; }
+
+@media (max-width: 900px) {
+  .util-bar, .cat-nav { display: none; }
+}
 
 /* Nav */
 .hd-nav {
