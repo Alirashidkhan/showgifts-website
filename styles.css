@@ -74,12 +74,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* Reveal animation */
+/* Scroll-reveal now degrades to "always visible" by default — content
+   must never depend on script.js's IntersectionObserver succeeding to
+   be seen (a tall mobile grid once made this mathematically
+   impossible; see script.js for the full story). The fade-in is now
+   a bonus if the observer fires quickly enough, never a requirement. */
 .rv {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .65s ease, transform .65s ease;
+  opacity: 1;
+  transform: none;
 }
-.rv.visible { opacity: 1; transform: translateY(0); }
+.rv.visible { opacity: 1; transform: translateY(0); transition: opacity .65s ease, transform .65s ease; }
 .delay-1 { transition-delay: .1s; }
 .delay-2 { transition-delay: .2s; }
 .delay-3 { transition-delay: .3s; }
@@ -1077,6 +1081,62 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-wrap: wrap;
 }
 .fb-inner p { font-size: .78rem; color: rgba(255,255,255,.35); }
+
+/* ── POWERED BY / ASK AI INDIA ────────────────────────────── */
+.pb-band { background: var(--navy2); border-top: 1px solid rgba(255,255,255,.08); }
+.pb-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 40px 0;
+}
+.pb-label {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.pb-text h4 { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.pb-text p { font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.65; max-width: 560px; }
+.pb-links-label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 12px;
+}
+.pb-link-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.pb-link-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #fff;
+  transition: all var(--trans);
+}
+.pb-link-grid a:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+.pb-link-grid a i { font-size: .68rem; opacity: .6; }
+.pb-link-grid a:hover i { opacity: 1; }
+
+@media (max-width: 900px) {
+  .pb-inner { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }
+  .pb-link-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .pb-link-grid { grid-template-columns: 1fr; }
+}
 
 /* ── WHATSAPP FAB ─────────────────────────────────────────── */
 .wa-fab {
