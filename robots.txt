@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alirashidkhan.github.io/showgifts-website/sitemap.xml
