@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alirashidkhan.github.io/showgifts-website/sitemap.xml
+Sitemap: https://showgifts.in/sitemap.xml

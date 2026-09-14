@@ -265,6 +265,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .util-bar a:hover { color: var(--navy); }
 .util-bar a i { color: var(--gold); font-size: .68rem; }
 .util-sep { width: 1px; height: 14px; background: var(--border); }
+.util-ask-ai { color: var(--navy) !important; font-weight: 700 !important; }
+.util-ask-ai i { color: var(--navy) !important; }
+.util-ask-ai:hover { color: var(--gold) !important; }
+.util-ask-ai:hover i { color: var(--gold) !important; }
 
 /* ── CATEGORY NAV ─────────────────────────────────────────── */
 .cat-nav {
